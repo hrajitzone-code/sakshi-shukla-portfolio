@@ -116,24 +116,35 @@ export function Work() {
                         </div>
                       </div>
 
-                      {/* Right Column: Existing Visual */}
+                      {/* Right Column: Existing Visual or Text Focus Card */}
                       <div className="h-full w-full bg-[var(--paper)] rounded-2xl p-4 border border-[var(--line)] flex flex-col justify-between relative overflow-hidden group">
                         <div className="flex items-center justify-between border-b border-[var(--line)] pb-2.5 font-mono text-[10px] text-[var(--mute)]">
-                          <span>SYSTEM INTERFACE VIEW</span>
+                          <span>{project.image ? 'SYSTEM INTERFACE VIEW' : 'SYSTEM OVERVIEW'}</span>
                           <span className="px-2 py-0.5 rounded bg-white text-[var(--ink)] font-semibold border border-[var(--line)]">
-                            Live Interface
+                            {project.image ? 'Live Interface' : 'Text Summary'}
                           </span>
                         </div>
 
-                        {/* Image Visual */}
-                        <div className="relative w-full flex-1 min-h-[220px] rounded-xl overflow-hidden bg-white border border-[var(--line)] flex items-center justify-center p-1.5 shadow-inner">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-contain rounded-lg"
-                          />
-                        </div>
+                        {/* Image Visual or Focus Card */}
+                        {project.image ? (
+                          <div className="relative w-full flex-1 min-h-[220px] rounded-xl overflow-hidden bg-white border border-[var(--line)] flex items-center justify-center p-1.5 shadow-inner">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className="w-full h-full object-contain rounded-lg"
+                            />
+                          </div>
+                        ) : (
+                          <div className="relative w-full flex-1 min-h-[220px] rounded-xl overflow-hidden bg-white border border-[var(--line)] flex flex-col justify-center p-6 shadow-inner space-y-3">
+                            <span className="text-[10px] font-mono text-[var(--mute)] uppercase block tracking-wider">
+                              Primary Analytical Focus
+                            </span>
+                            <p className="text-sm font-semibold text-[var(--ink)] leading-relaxed">
+                              {project.focus}
+                            </p>
+                          </div>
+                        )}
 
                         {/* Impact Badge */}
                         <div className="bg-white p-3 rounded-xl border border-[var(--line)] shadow-sm mt-3">
@@ -180,15 +191,17 @@ export function Work() {
                         ))}
                       </div>
 
-                      {/* Image Visual */}
-                      <div className="w-full rounded-xl overflow-hidden bg-white border border-[var(--line)] p-2">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-auto object-contain rounded-lg"
-                        />
-                      </div>
+                      {/* Image Visual if present */}
+                      {project.image ? (
+                        <div className="w-full rounded-xl overflow-hidden bg-white border border-[var(--line)] p-2">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-auto object-contain rounded-lg"
+                          />
+                        </div>
+                      ) : null}
 
                       <div className="p-3 bg-[var(--paper)] rounded-xl text-xs">
                         <strong>Impact:</strong> {project.impact}

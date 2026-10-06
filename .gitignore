@@ -40,3 +40,5 @@ screenshot-*.png
 test_*.png
 verify_*.png
 frame_*.jpg
+
+.vercel

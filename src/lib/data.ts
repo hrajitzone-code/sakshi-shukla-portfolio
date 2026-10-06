@@ -467,7 +467,7 @@ export const PRIMARY_PROJECTS: PrimaryProject[] = [
     ],
     tech: ['Excel', 'Google Sheets', 'SQL', 'Data Analytics'],
     impact: 'Centralized analytical visibility across multiple business departments and streamlined decision-making.',
-    image: '/projects/project-2.png'
+    image: ''
   }
 ];
 
