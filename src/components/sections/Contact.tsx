@@ -62,7 +62,7 @@ export function Contact() {
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="text-2xl md:text-4xl font-bold text-[var(--ink)] underline hover:text-[var(--mute)] transition-colors tracking-tight"
+                className="text-lg sm:text-2xl md:text-4xl font-bold text-[var(--ink)] underline hover:text-[var(--mute)] transition-colors tracking-tight break-all sm:break-normal"
               >
                 {PROFILE.email}
               </a>

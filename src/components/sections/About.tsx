@@ -134,7 +134,7 @@ export function About() {
               {/* Flip Container */}
               <div
                 ref={cardRef}
-                className="w-[300px] h-[404px] relative rounded-[24px] shadow-2xl transition-transform duration-700 [transform-style:preserve-3d] group"
+                className="w-[min(300px,calc(100vw-40px))] h-[404px] relative rounded-[24px] shadow-2xl transition-transform duration-700 [transform-style:preserve-3d] group"
                 style={{
                   transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                 }}

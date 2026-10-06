@@ -39,7 +39,7 @@ export function Experience() {
         </div>
 
         {/* Timeline Container */}
-        <div className="relative max-w-4xl mx-auto pl-6 md:pl-10">
+        <div className="relative max-w-4xl mx-auto pl-8 md:pl-10">
           {/* Background Static Line */}
           <div className="absolute left-[15px] md:left-[23px] top-4 bottom-4 w-[2px] bg-[var(--line)]" />
 

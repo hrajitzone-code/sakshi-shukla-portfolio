@@ -89,7 +89,7 @@ export function Skills() {
 
           {/* Sticky Inspector Panel */}
           {currentSkill && (
-            <div className="lg:sticky lg:top-24 card-surface p-8 flex flex-col justify-between min-h-[400px] border border-[var(--line-strong)]">
+            <div className="lg:sticky lg:top-24 card-surface p-5 sm:p-8 flex flex-col justify-between min-h-[360px] sm:min-h-[400px] border border-[var(--line-strong)]">
               <div className="space-y-6">
                 {/* Top Family Badge */}
                 <div className="flex items-center justify-between border-b border-[var(--line)] pb-4">
