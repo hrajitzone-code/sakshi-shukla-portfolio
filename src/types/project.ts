@@ -14,6 +14,17 @@ export interface ProjectMetric {
   change?: string;
 }
 
+export interface SystemDemo {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  type?: string;
+  screenshot?: string;
+  order: number;
+  status: ProjectStatus;
+}
+
 export interface DetailedProject {
   id: string;
   index: string;
@@ -35,6 +46,7 @@ export interface DetailedProject {
   image: string; // primary image thumbnail
   images: ProjectImage[]; // multi-image gallery
   demoUrl?: string;
+  demos?: SystemDemo[];
   githubUrl?: string;
   clientType?: string;
   createdAt: string;

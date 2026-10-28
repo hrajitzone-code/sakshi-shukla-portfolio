@@ -136,6 +136,7 @@ export async function createProject(
     image: data.image || '',
     images: data.images || [],
     demoUrl: data.demoUrl || '',
+    demos: data.demos || [],
     githubUrl: data.githubUrl || '',
     clientType: data.clientType || '',
     createdAt: new Date().toISOString(),

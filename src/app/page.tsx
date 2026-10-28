@@ -1,5 +1,9 @@
 import { App } from '@/components/App';
+import { getAllProjects } from '@/lib/projectStore';
 
-export default function Home() {
-  return <App />;
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  const publishedProjects = await getAllProjects(true);
+  return <App initialProjects={publishedProjects} />;
 }

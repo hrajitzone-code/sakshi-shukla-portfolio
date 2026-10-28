@@ -9,8 +9,13 @@ import { Experience } from '@/components/sections/Experience';
 import { Achievements } from '@/components/sections/Achievements';
 import { Contact } from '@/components/sections/Contact';
 import { RevealObserver } from '@/components/ui/RevealObserver';
+import { DetailedProject } from '@/types/project';
 
-export function App() {
+interface AppProps {
+  initialProjects?: DetailedProject[];
+}
+
+export function App({ initialProjects }: AppProps) {
   return (
     <RevealObserver>
       <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] antialiased relative">
@@ -19,7 +24,7 @@ export function App() {
           <Hero />
           <About />
           <Skills />
-          <Work />
+          <Work initialProjects={initialProjects} />
           <Experience />
           <Achievements />
         </main>

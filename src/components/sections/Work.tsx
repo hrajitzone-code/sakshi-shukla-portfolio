@@ -3,11 +3,32 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { PRIMARY_PROJECTS, SECONDARY_PROJECTS } from '@/lib/data';
+import { DetailedProject } from '@/types/project';
 import { TechLogo } from '@/components/ui/TechLogo';
 import { Plus, CheckCircle2, ArrowRight, Share2, Check } from 'lucide-react';
 
-export function Work() {
-  const [activeId, setActiveId] = useState<string>(PRIMARY_PROJECTS[0].id);
+interface WorkProps {
+  initialProjects?: DetailedProject[];
+}
+
+export function Work({ initialProjects }: WorkProps) {
+  const published = initialProjects && initialProjects.length > 0
+    ? initialProjects.filter((p) => p.status === 'published')
+    : null;
+
+  const primaryProjects = published
+    ? (published.filter((p) => p.isPrimary).length > 0
+        ? published.filter((p) => p.isPrimary)
+        : published.slice(0, 5))
+    : PRIMARY_PROJECTS;
+
+  const secondaryProjects = published
+    ? (published.filter((p) => p.isPrimary).length > 0
+        ? published.filter((p) => !p.isPrimary)
+        : published.slice(5))
+    : SECONDARY_PROJECTS;
+
+  const [activeId, setActiveId] = useState<string>(primaryProjects[0]?.id || PRIMARY_PROJECTS[0].id);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const handleCopyProjectLink = (e: React.MouseEvent, projectId: string) => {
@@ -39,13 +60,13 @@ export function Work() {
         <div className="mb-20">
           <div className="flex items-center justify-between mb-4">
             <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider">
-              Primary Systems & Enterprise Dashboards (5)
+              Primary Systems & Enterprise Dashboards ({primaryProjects.length})
             </span>
           </div>
 
           {/* Desktop Horizontal Accordion (5 Columns) */}
           <div className="hidden lg:flex gap-4 h-[min(82svh,640px)] w-full items-stretch">
-            {PRIMARY_PROJECTS.map((project) => {
+            {primaryProjects.map((project) => {
               const isOpen = activeId === project.id;
               return (
                 <div
@@ -206,7 +227,7 @@ export function Work() {
 
           {/* Mobile Vertical Accordion (5 Primary Projects) */}
           <div className="lg:hidden flex flex-col gap-4">
-            {PRIMARY_PROJECTS.map((project) => {
+            {primaryProjects.map((project) => {
               const isOpen = activeId === project.id;
               return (
                 <div
@@ -301,13 +322,13 @@ export function Work() {
               </h3>
             </div>
             <span className="font-mono text-xs text-[var(--mute)] hidden sm:inline">
-              6 SUPPORTING MODULES
+              {secondaryProjects.length} SUPPORTING MODULES
             </span>
           </div>
 
           {/* 3-Column Grid of Text-Only Cards (Visually Lighter) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SECONDARY_PROJECTS.map((proj) => (
+            {secondaryProjects.map((proj) => (
               <div
                 key={proj.id}
                 className="bg-white/60 hover:bg-white p-6 rounded-2xl border border-[var(--line)] hover:border-[var(--ink)] transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md"

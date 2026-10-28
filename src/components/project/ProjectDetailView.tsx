@@ -494,26 +494,106 @@ export function ProjectDetailView({ project: initialProject, isAdmin = false }: 
               </div>
             </div>
 
-            {/* Working Demo / Link */}
-            {project.demoUrl && (
-              <div className="bg-white p-6 rounded-3xl border border-[var(--line)] shadow-sm space-y-3">
-                <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider block">
-                  SYSTEM DEMO
-                </span>
-                <p className="text-xs text-[var(--ink-2)]">
-                  Preview an interactive structure or live template of this business system.
-                </p>
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
-                >
-                  <span>Open System Demo</span>
-                  <ExternalLink size={13} />
-                </a>
-              </div>
-            )}
+            {/* System Demos Section */}
+            {(() => {
+              const visibleDemos = (project.demos || [])
+                .filter((d) => (isAdmin ? true : d.status === 'published'))
+                .sort((a, b) => a.order - b.order);
+
+              if (visibleDemos.length > 0) {
+                return (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider block">
+                        SYSTEM DEMOS ({visibleDemos.length})
+                      </span>
+                      {isAdmin && (
+                        <Link
+                          href="/admin"
+                          className="font-mono text-[10px] text-[var(--ink)] hover:underline"
+                        >
+                          Manage in Studio
+                        </Link>
+                      )}
+                    </div>
+
+                    <div className="space-y-3">
+                      {visibleDemos.map((demo) => (
+                        <div
+                          key={demo.id}
+                          className="bg-white p-5 rounded-3xl border border-[var(--line)] shadow-sm space-y-3"
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <div>
+                              <span className="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-[var(--paper)] text-[var(--ink-2)]">
+                                {demo.type || 'Interactive Demo'}
+                              </span>
+                              <h4 className="text-sm font-bold text-[var(--ink)] mt-1.5 leading-snug">
+                                {demo.title}
+                              </h4>
+                            </div>
+                            {demo.status !== 'published' && (
+                              <span className="text-[9px] font-mono font-bold uppercase text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">
+                                {demo.status}
+                              </span>
+                            )}
+                          </div>
+
+                          {demo.screenshot && (
+                            <div className="w-full h-28 rounded-xl overflow-hidden bg-[var(--paper)] border border-[var(--line)]">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={demo.screenshot}
+                                alt={demo.title}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                          )}
+
+                          <p className="text-xs text-[var(--ink-2)] leading-relaxed">
+                            {demo.description}
+                          </p>
+
+                          <a
+                            href={demo.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary w-full text-xs py-2 flex items-center justify-center gap-1.5"
+                          >
+                            <span>Open System Demo</span>
+                            <ExternalLink size={12} />
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              if (project.demoUrl) {
+                return (
+                  <div className="bg-white p-6 rounded-3xl border border-[var(--line)] shadow-sm space-y-3">
+                    <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider block">
+                      SYSTEM DEMO
+                    </span>
+                    <p className="text-xs text-[var(--ink-2)]">
+                      Preview an interactive structure or live template of this business system.
+                    </p>
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
+                    >
+                      <span>Open System Demo</span>
+                      <ExternalLink size={13} />
+                    </a>
+                  </div>
+                );
+              }
+
+              return null;
+            })()}
 
             {/* Business Contact Action Card */}
             <div className="bg-[var(--ink)] text-[var(--paper)] p-6 rounded-3xl shadow-md space-y-4">
