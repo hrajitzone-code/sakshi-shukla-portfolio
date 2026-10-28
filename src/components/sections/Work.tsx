@@ -31,15 +31,43 @@ export function Work({ initialProjects }: WorkProps) {
   const [activeId, setActiveId] = useState<string>(primaryProjects[0]?.id || PRIMARY_PROJECTS[0].id);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const handleCopyProjectLink = (e: React.MouseEvent, projectId: string) => {
+  const handleCopyProjectLink = async (e: React.MouseEvent, projectId: string) => {
     e.preventDefault();
     e.stopPropagation();
-    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://sakshi-shukla-portfolio-six.vercel.app';
+    const origin =
+      typeof window !== 'undefined'
+        ? window.location.origin
+        : 'https://sakshi-shukla-portfolio-six.vercel.app';
     const url = `${origin}/projects/${projectId}`;
-    if (navigator?.clipboard) {
-      navigator.clipboard.writeText(url);
+
+    // Modern clipboard API
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(url);
+        setCopiedId(projectId);
+        setTimeout(() => setCopiedId(null), 2500);
+        return;
+      } catch (err) {
+        console.warn('Clipboard writeText failed, using fallback:', err);
+      }
+    }
+
+    // Fallback using temporary textarea
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = url;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      textArea.style.top = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
       setCopiedId(projectId);
       setTimeout(() => setCopiedId(null), 2500);
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
     }
   };
 
@@ -100,10 +128,10 @@ export function Work({ initialProjects }: WorkProps) {
 
                   {/* EXPANDED CONTENT VIEW (When open) */}
                   {isOpen && (
-                    <div className="w-full h-full p-8 grid grid-cols-1 xl:grid-cols-2 gap-8 items-center animate-fade-in overflow-hidden">
-                      {/* Left Column: Details */}
-                      <div className="flex flex-col justify-between h-full space-y-4">
-                        <div className="space-y-3">
+                    <div className="w-full h-full p-6 xl:p-8 grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-8 items-stretch animate-fade-in overflow-hidden">
+                      {/* Left Column: Details & Actions */}
+                      <div className="flex flex-col justify-between h-full min-h-0 overflow-hidden">
+                        <div className="space-y-3.5 overflow-y-auto pr-1 scrollbar-none flex-1 min-h-0">
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-[var(--paper)] text-[var(--ink)]">
                               {project.index}
@@ -120,51 +148,51 @@ export function Work({ initialProjects }: WorkProps) {
                           <p className="text-xs xl:text-sm leading-relaxed text-[var(--ink-2)]">
                             {project.description}
                           </p>
-                        </div>
 
-                        {/* 2-Column Feature List */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--ink-2)] border-t border-[var(--line)] pt-3">
-                          {project.features.map((feat, i) => (
-                            <div key={i} className="flex items-start gap-2">
-                              <CheckCircle2 size={14} className="text-[var(--ink)] shrink-0 mt-0.5" />
-                              <span>{feat}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Tech Chips */}
-                        <div className="space-y-2 border-t border-[var(--line)] pt-3">
-                          <span className="text-[10px] font-mono text-[var(--mute)] uppercase block">
-                            Technologies & Tools
-                          </span>
-                          <div className="flex flex-wrap gap-2">
-                            {project.tech.map((t) => (
-                              <span
-                                key={t}
-                                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--paper)] text-xs font-semibold text-[var(--ink-2)]"
-                              >
-                                <TechLogo name={t} size={14} />
-                                <span>{t}</span>
-                              </span>
+                          {/* 2-Column Feature List */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--ink-2)] border-t border-[var(--line)] pt-3">
+                            {project.features.map((feat, i) => (
+                              <div key={i} className="flex items-start gap-2">
+                                <CheckCircle2 size={14} className="text-[var(--ink)] shrink-0 mt-0.5" />
+                                <span>{feat}</span>
+                              </div>
                             ))}
+                          </div>
+
+                          {/* Tech Chips */}
+                          <div className="space-y-2 border-t border-[var(--line)] pt-3">
+                            <span className="text-[10px] font-mono text-[var(--mute)] uppercase block">
+                              Technologies & Tools
+                            </span>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tech.map((t) => (
+                                <span
+                                  key={t}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--paper)] text-xs font-semibold text-[var(--ink-2)]"
+                                >
+                                  <TechLogo name={t} size={14} />
+                                  <span>{t}</span>
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
 
-                        {/* Case Study & Share Actions */}
-                        <div className="flex items-center gap-3 pt-3 border-t border-[var(--line)]">
+                        {/* View Case Study & Share Project Action Buttons */}
+                        <div className="flex items-center gap-2.5 pt-3 border-t border-[var(--line)] shrink-0 mt-3 z-10">
                           <Link
                             href={`/projects/${project.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="btn-primary text-xs py-2 px-3.5 flex items-center gap-1.5 cursor-pointer"
+                            className="btn-primary text-xs py-2 px-3.5 flex items-center gap-1.5 cursor-pointer font-semibold shadow-sm hover:shadow"
                           >
-                            <span>Case study & metrics</span>
+                            <span>View Case Study</span>
                             <ArrowRight size={13} />
                           </Link>
 
                           <button
                             type="button"
                             onClick={(e) => handleCopyProjectLink(e, project.id)}
-                            className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer"
+                            className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer font-semibold hover:border-[var(--ink)]"
                             aria-label={`Share ${project.title}`}
                           >
                             {copiedId === project.id ? (
@@ -175,7 +203,7 @@ export function Work({ initialProjects }: WorkProps) {
                             ) : (
                               <>
                                 <Share2 size={13} />
-                                <span>Share</span>
+                                <span>Share Project</span>
                               </>
                             )}
                           </button>
@@ -273,31 +301,32 @@ export function Work({ initialProjects }: WorkProps) {
                         <strong>Impact:</strong> {project.impact}
                       </div>
 
-                      <div className="flex items-center gap-2 pt-2 border-t border-[var(--line)]">
+                      {/* Action Buttons: View Case Study & Share Project */}
+                      <div className="flex items-center gap-2 pt-3 border-t border-[var(--line)]">
                         <Link
                           href={`/projects/${project.id}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="btn-primary text-xs py-2 px-3 flex items-center gap-1.5 cursor-pointer"
+                          className="btn-primary text-xs py-2.5 px-3.5 flex-1 flex items-center justify-center gap-1.5 cursor-pointer font-semibold text-center shadow-sm"
                         >
-                          <span>Case study</span>
+                          <span>View Case Study</span>
                           <ArrowRight size={13} />
                         </Link>
 
                         <button
                           type="button"
                           onClick={(e) => handleCopyProjectLink(e, project.id)}
-                          className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer"
+                          className="btn-secondary text-xs py-2.5 px-3.5 flex-1 sm:flex-initial flex items-center justify-center gap-1.5 bg-white cursor-pointer font-semibold"
                           aria-label={`Share ${project.title}`}
                         >
                           {copiedId === project.id ? (
                             <>
                               <Check size={13} className="text-emerald-600" />
-                              <span className="text-emerald-600 font-semibold">Copied</span>
+                              <span className="text-emerald-600 font-semibold">Copied!</span>
                             </>
                           ) : (
                             <>
                               <Share2 size={13} />
-                              <span>Share</span>
+                              <span>Share Project</span>
                             </>
                           )}
                         </button>
@@ -370,28 +399,31 @@ export function Work({ initialProjects }: WorkProps) {
                     ))}
                   </div>
 
-                  {/* Case Study & Share Link */}
-                  <div className="flex items-center justify-between pt-3 border-t border-[var(--line)]">
+                  {/* Action Buttons: View Case Study & Share Project */}
+                  <div className="flex items-center gap-2 pt-3 border-t border-[var(--line)]">
                     <Link
                       href={`/projects/${proj.id}`}
-                      className="text-xs font-semibold text-[var(--ink)] hover:underline inline-flex items-center gap-1 cursor-pointer"
+                      className="btn-primary text-xs py-2 px-3 flex-1 flex items-center justify-center gap-1.5 cursor-pointer font-semibold text-center shadow-sm"
                     >
-                      <span>Case study & details</span>
+                      <span>View Case Study</span>
                       <ArrowRight size={12} />
                     </Link>
 
                     <button
                       type="button"
                       onClick={(e) => handleCopyProjectLink(e, proj.id)}
-                      className="text-[11px] font-mono text-[var(--mute)] hover:text-[var(--ink)] flex items-center gap-1 cursor-pointer"
+                      className="btn-secondary text-xs py-2 px-3 flex items-center justify-center gap-1.5 bg-white cursor-pointer font-semibold shrink-0"
                       aria-label={`Share ${proj.title}`}
                     >
                       {copiedId === proj.id ? (
-                        <span className="text-emerald-600 font-bold">Copied!</span>
+                        <>
+                          <Check size={12} className="text-emerald-600" />
+                          <span className="text-emerald-600 font-semibold">Copied!</span>
+                        </>
                       ) : (
                         <>
                           <Share2 size={12} />
-                          <span>Share</span>
+                          <span>Share Project</span>
                         </>
                       )}
                     </button>
