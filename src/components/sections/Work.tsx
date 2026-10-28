@@ -1,12 +1,26 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { PRIMARY_PROJECTS, SECONDARY_PROJECTS } from '@/lib/data';
 import { TechLogo } from '@/components/ui/TechLogo';
-import { Plus, CheckCircle2 } from 'lucide-react';
+import { Plus, CheckCircle2, ArrowRight, Share2, Check } from 'lucide-react';
 
 export function Work() {
   const [activeId, setActiveId] = useState<string>(PRIMARY_PROJECTS[0].id);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopyProjectLink = (e: React.MouseEvent, projectId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://sakshi-shukla-portfolio-six.vercel.app';
+    const url = `${origin}/projects/${projectId}`;
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(url);
+      setCopiedId(projectId);
+      setTimeout(() => setCopiedId(null), 2500);
+    }
+  };
 
   return (
     <section id="work" className="section-padding bg-[var(--paper)] relative">
@@ -114,6 +128,37 @@ export function Work() {
                             ))}
                           </div>
                         </div>
+
+                        {/* Case Study & Share Actions */}
+                        <div className="flex items-center gap-3 pt-3 border-t border-[var(--line)]">
+                          <Link
+                            href={`/projects/${project.id}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="btn-primary text-xs py-2 px-3.5 flex items-center gap-1.5 cursor-pointer"
+                          >
+                            <span>Case study & metrics</span>
+                            <ArrowRight size={13} />
+                          </Link>
+
+                          <button
+                            type="button"
+                            onClick={(e) => handleCopyProjectLink(e, project.id)}
+                            className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer"
+                            aria-label={`Share ${project.title}`}
+                          >
+                            {copiedId === project.id ? (
+                              <>
+                                <Check size={13} className="text-emerald-600" />
+                                <span className="text-emerald-600 font-semibold">Copied!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Share2 size={13} />
+                                <span>Share</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
                       </div>
 
                       {/* Right Column: Existing Visual or Text Focus Card */}
@@ -206,6 +251,36 @@ export function Work() {
                       <div className="p-3 bg-[var(--paper)] rounded-xl text-xs">
                         <strong>Impact:</strong> {project.impact}
                       </div>
+
+                      <div className="flex items-center gap-2 pt-2 border-t border-[var(--line)]">
+                        <Link
+                          href={`/projects/${project.id}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="btn-primary text-xs py-2 px-3 flex items-center gap-1.5 cursor-pointer"
+                        >
+                          <span>Case study</span>
+                          <ArrowRight size={13} />
+                        </Link>
+
+                        <button
+                          type="button"
+                          onClick={(e) => handleCopyProjectLink(e, project.id)}
+                          className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer"
+                          aria-label={`Share ${project.title}`}
+                        >
+                          {copiedId === project.id ? (
+                            <>
+                              <Check size={13} className="text-emerald-600" />
+                              <span className="text-emerald-600 font-semibold">Copied</span>
+                            </>
+                          ) : (
+                            <>
+                              <Share2 size={13} />
+                              <span>Share</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -272,6 +347,33 @@ export function Work() {
                         <span>{t}</span>
                       </span>
                     ))}
+                  </div>
+
+                  {/* Case Study & Share Link */}
+                  <div className="flex items-center justify-between pt-3 border-t border-[var(--line)]">
+                    <Link
+                      href={`/projects/${proj.id}`}
+                      className="text-xs font-semibold text-[var(--ink)] hover:underline inline-flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>Case study & details</span>
+                      <ArrowRight size={12} />
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={(e) => handleCopyProjectLink(e, proj.id)}
+                      className="text-[11px] font-mono text-[var(--mute)] hover:text-[var(--ink)] flex items-center gap-1 cursor-pointer"
+                      aria-label={`Share ${proj.title}`}
+                    >
+                      {copiedId === proj.id ? (
+                        <span className="text-emerald-600 font-bold">Copied!</span>
+                      ) : (
+                        <>
+                          <Share2 size={12} />
+                          <span>Share</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>

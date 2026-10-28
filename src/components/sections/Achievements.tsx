@@ -107,7 +107,7 @@ export function Achievements() {
               }}
             >
               {ACHIEVEMENTS.map((item) => (
-                <AchievementCard key={`desktop-${item.id}`} item={item} />
+                <AchievementCard key={`desktop-${item.id}`} item={item} forceActive={scrollProgress > 0.01} />
               ))}
 
               {/* End Track Card: and counting → */}
@@ -129,27 +129,56 @@ export function Achievements() {
   );
 }
 
-function AchievementCard({ item, isMobile = false }: { item: Achievement; isMobile?: boolean }) {
+function AchievementCard({
+  item,
+  isMobile = false,
+  forceActive = false,
+}: {
+  item: Achievement;
+  isMobile?: boolean;
+  forceActive?: boolean;
+}) {
   const [count, setCount] = useState(0);
   const [seen, setSeen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (forceActive && !seen) {
+      setSeen(true);
+    }
+  }, [forceActive, seen]);
+
+  useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
 
+    // Trigger if already visible in viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setSeen(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !seen) {
+        if (entry.isIntersecting) {
           setSeen(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '60px' }
     );
 
     observer.observe(el);
     return () => observer.unobserve(el);
-  }, [seen]);
+  }, []);
+
+  // Fail-safe timeout so counter is never stuck at 0
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSeen(true);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Count-up animation (easeOutQuart over 1.4s)
   useEffect(() => {

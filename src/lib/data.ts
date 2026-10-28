@@ -82,8 +82,8 @@ export interface Achievement {
 export const PROFILE: Profile = {
   name: 'Sakshi Shukla',
   initials: 'SS',
-  role: 'Data Analyst | Business Analyst | BI & Reporting | Process Automation',
-  shortRole: 'Data & Business Analyst',
+  role: 'Business Analytics & MIS Specialist | Reporting & Workflow Automation',
+  shortRole: 'Business Systems & Automation Specialist',
   email: 'sakshishukla1167@gmail.com',
   phone: '8200619139',
   phoneHref: 'tel:8200619139',
@@ -91,20 +91,18 @@ export const PROFILE: Profile = {
   linkedin: 'https://linkedin.com/in/sakshi-shukla-7047252a0',
   resumePdf: '/Sakshi_Shukla_Data_Business_Analyst_Resume.pdf',
   resumeSummary:
-    'Data and business analytics professional with 2+ years of experience in MIS reporting, dashboard development, data analysis, process automation, workflow design, and business process improvement. Experienced in converting business requirements and operational data into structured reports, dashboards, automated workflows, and software solutions across financial, inventory, operational, and franchise-management processes.',
+    'Helping business owners, founders, and operational leaders replace manual spreadsheets, eliminate reporting bottlenecks, and automate core workflows. 2+ years of hands-on experience building custom MIS dashboards, automated payroll systems, warehouse picking workflows, and business intelligence reporting that cut turnaround times from days to minutes.',
   shortLine:
-    'Strong ability to understand business processes, identify inefficiencies, structure requirements, and translate them into practical data and technology solutions.',
+    'Helping founders and operational leaders eliminate spreadsheet friction, automate reporting pipelines, and build custom business systems that scale.',
   quote:
-    'Converting raw operational datasets into structured MIS reports, KPI dashboards, and automated business workflows.',
+    'Converting operational friction and raw data into structured systems, real-time KPI visibility, and scalable workflows for growing businesses.',
   targetRoles: [
-    'Data Analyst',
+    'Business Systems & Automation',
+    'MIS & Reporting Specialist',
     'Business Analyst',
-    'BI Analyst',
-    'Reporting Analyst',
-    'MIS Analyst',
-    'Junior Data Analyst',
-    'Business Process Analyst',
-    'MIS / Reporting Team Lead'
+    'Data & Operations Analyst',
+    'BI & Dashboard Architect',
+    'Operations Automation Consultant'
   ]
 };
 

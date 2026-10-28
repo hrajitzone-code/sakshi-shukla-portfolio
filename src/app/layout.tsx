@@ -34,13 +34,24 @@ const jetbrainsMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sakshi-shukla-portfolio-six.vercel.app'),
   title: `${PROFILE.name} — ${PROFILE.shortRole}`,
   description: PROFILE.resumeSummary,
+  keywords: [
+    'Sakshi Shukla',
+    'Business Systems',
+    'MIS Reporting',
+    'Workflow Automation',
+    'Data Analyst',
+    'Power BI',
+    'Google Sheets Automation',
+    'KPI Dashboards',
+  ],
   authors: [{ name: PROFILE.name }],
   openGraph: {
     title: `${PROFILE.name} — ${PROFILE.shortRole}`,
     description: PROFILE.resumeSummary,
-    url: 'https://sakshishukla.dev',
+    url: 'https://sakshi-shukla-portfolio-six.vercel.app',
     siteName: `${PROFILE.name} Portfolio`,
     images: [
       {

@@ -3,14 +3,24 @@
 import { useState, useEffect, useRef } from 'react';
 import { PROFILE } from '@/lib/data';
 import { useScroll } from '@/lib/scroll';
-import { Play, Pause, ArrowDown } from 'lucide-react';
+import { Play, Pause, ArrowDown, Share2, Check } from 'lucide-react';
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [soundOn, setSoundOn] = useState(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState(true);
+  const [copiedLink, setCopiedLink] = useState(false);
   const { scrollToTarget } = useScroll();
+
+  const handleCopyPortfolioLink = () => {
+    const url = typeof window !== 'undefined' ? window.location.origin : 'https://sakshi-shukla-portfolio-six.vercel.app';
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(url);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -122,7 +132,7 @@ export function Hero() {
         {/* Top Tagline */}
         <div className="rv pt-4" style={{ '--i': 0 } as React.CSSProperties}>
           <span className="font-mono-tag px-3 py-1.5 rounded-full border border-[var(--line)] bg-white/60 backdrop-blur-sm">
-            01 — Data & Process Automation
+            01 — Business Analytics & Reporting Automation
           </span>
         </div>
 
@@ -163,7 +173,7 @@ export function Hero() {
         {/* Hero Bottom Heading & CTAs */}
         <div className="w-full max-w-3xl flex flex-col items-center gap-6 mt-4 z-10">
           <h1 className="rv text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-[var(--ink)]" style={{ '--i': 1 } as React.CSSProperties}>
-            Data Analyst & Business <span className="serif-accent">Architect.</span>
+            Business Systems & MIS <span className="serif-accent">Automation.</span>
           </h1>
 
           <p className="rv text-base md:text-lg text-[var(--mute)] max-w-xl" style={{ '--i': 2 } as React.CSSProperties}>
@@ -183,7 +193,7 @@ export function Hero() {
               onClick={() => scrollToTarget('#contact')}
               className="btn-secondary text-sm"
             >
-              Let&apos;s talk
+              Discuss a project
             </button>
 
             <a
@@ -194,6 +204,24 @@ export function Hero() {
               <span>Résumé</span>
               <ArrowDown size={14} />
             </a>
+
+            <button
+              onClick={handleCopyPortfolioLink}
+              className="btn-secondary text-sm flex items-center gap-2 bg-white"
+              aria-label="Copy portfolio link"
+            >
+              {copiedLink ? (
+                <>
+                  <Check size={14} className="text-emerald-600" />
+                  <span className="text-emerald-600 font-semibold">Link copied!</span>
+                </>
+              ) : (
+                <>
+                  <Share2 size={14} />
+                  <span>Share</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>

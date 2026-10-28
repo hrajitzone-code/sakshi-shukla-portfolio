@@ -1,0 +1,642 @@
+[
+  {
+    "id": "coral-bios-daily-report",
+    "index": "01",
+    "order": 1,
+    "title": "Coral BIOS Daily Report",
+    "status": "published",
+    "isPrimary": true,
+    "kicker": "Data Analytics • MIS • Executive KPI Reporting",
+    "focus": "Data Analytics • MIS • Dashboard Development • KPI Reporting",
+    "description": "Designed a dynamic reporting and analytics system connected with Google Sheets across multiple operating departments. Structured department and field-based reporting with KPI views, total entries, performance analysis, and Today vs. Yesterday / weekly / monthly executive comparisons.",
+    "problemStatement": "Operations across Online sales, Offline distribution, and Floor management were operating in disconnected information silos. Management had to wait 2 to 3 days for weekly figures to be compiled manually across disparate spreadsheets, causing delayed business decisions, lack of day-over-day operational visibility, and frequent human calculation discrepancies.",
+    "solution": "Architected an automated multi-department data engine connected to Google Sheets and executive dashboards. Structured standardized input templates for field managers, automated midnight data consolidation via Google Apps Script, and built interactive KPI views displaying totals, averages, min/max values, and Today vs. Yesterday, weekly, and monthly trend comparisons.",
+    "role": "Lead Data Analyst & MIS Solutions Architect",
+    "implementationDetails": [
+      "Standardized data capture templates across Online, Offline, and Floor Manager reporting pipelines to eliminate entry anomalies.",
+      "Engineered automated consolidation scripts using Google Apps Script to eliminate 100% of manual data copying.",
+      "Built dynamic multi-department KPI dashboards in Google Sheets and Power BI featuring automated variance and trend analysis.",
+      "Implemented role-based dashboard views so department heads saw actionable operational details while executives received 360-degree company oversight."
+    ],
+    "features": [
+      "Multi-department Google Sheets cloud data integration",
+      "Online, Offline & Floor Manager tailored reporting views",
+      "Automated totals, averages, min/max & raw-value variance analysis",
+      "Dynamic date range filtering (Today, Yesterday, Weekly, Monthly)",
+      "Automated midnight data aggregation & reconciliation",
+      "Executive KPI scorecards and trend comparison indicators"
+    ],
+    "tech": [
+      "Google Sheets",
+      "Google Apps Script",
+      "Power BI",
+      "Excel",
+      "MIS Reporting"
+    ],
+    "impact": "Reduced report preparation time from 2–3 days to approximately 30 minutes, delivering real-time operational visibility across all departments.",
+    "metrics": [
+      {
+        "label": "Report Prep Time",
+        "value": "2-3 Days → ~30 Mins"
+      },
+      {
+        "label": "Reporting Accuracy",
+        "value": "99.8%"
+      },
+      {
+        "label": "Departments Integrated",
+        "value": "3 Core Divisions"
+      }
+    ],
+    "image": "/projects/project-1.png",
+    "images": [
+      {
+        "id": "img-cbdr-1",
+        "url": "/projects/project-1.png",
+        "caption": "Executive Daily MIS Analytics Overview — Departmental entries, today vs yesterday performance and automated KPI totals.",
+        "order": 1,
+        "isPrimary": true
+      }
+    ],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-coral-bios-daily-report",
+    "clientType": "Multi-Channel Retail & Distribution",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "coral-bios-fms",
+    "index": "02",
+    "order": 2,
+    "title": "Coral BIOS FMS (Franchise Management)",
+    "status": "published",
+    "isPrimary": true,
+    "kicker": "Franchise Operations • Ticket Tracking • SLA Monitoring",
+    "focus": "Franchise Operations • Ticket Tracking • SLA Monitoring • MIS",
+    "description": "Built a comprehensive Franchise Management System (FMS) handling franchisee ticket generation, operational tracking, and lifecycle visibility. Included real-time dashboard cards, SLA tracking, resolution time metrics, and multi-parameter filtration.",
+    "problemStatement": "Franchisee operational issues, technical requests, and logistics support tickets were submitted across WhatsApp groups, individual phone calls, and manual registers. Franchisee queries were lost, average resolution times exceeded 5 days, and leadership lacked SLA monitoring and accountability metrics.",
+    "solution": "Designed a centralized Franchise Management System (FMS) tracking the full lifecycle of every franchisee request from open to resolved. Implemented automated ticket ID generation, department routing, SLA threshold timers, status breakdown cards (Open, In Progress, Solved, Transferred), and dynamic multi-parameter filtering.",
+    "role": "Business Analyst & Workflow Architect",
+    "implementationDetails": [
+      "Mapped end-to-end franchise operational workflows and categorized ticket severity tiers.",
+      "Built status tracking cards with color-coded SLA alerts for unresolved queries past 24/48 hours.",
+      "Developed interactive filtration engine allowing support teams to filter by franchisee ID, region, issue type, and resolution date.",
+      "Configured automated performance reports summarizing resolution velocity and repeat issue trends."
+    ],
+    "features": [
+      "Franchisee ticket lifecycle logging (Open, Progress, Solved, Transferred)",
+      "Automated SLA monitoring and overdue query alerts",
+      "Dynamic status card summaries and real-time count metrics",
+      "Multi-parameter filtering by franchise location, date, and category",
+      "Department escalation routing and reassignment tracker",
+      "Resolution time analytics and recurring issue diagnosis"
+    ],
+    "tech": [
+      "Excel",
+      "Google Sheets",
+      "Google Apps Script",
+      "Business Analysis",
+      "MIS Reporting"
+    ],
+    "impact": "Centralised franchise query management, streamlined issue escalations, and reduced resolution times across network franchises.",
+    "metrics": [
+      {
+        "label": "Franchise Coverage",
+        "value": "100% Network"
+      },
+      {
+        "label": "Ticket Visibility",
+        "value": "Zero Lost Queries"
+      },
+      {
+        "label": "SLA Compliance",
+        "value": "95%+ On-Time"
+      }
+    ],
+    "image": "/projects/project-2.png",
+    "images": [
+      {
+        "id": "img-fms-1",
+        "url": "/projects/project-2.png",
+        "caption": "Franchise Management System (FMS) Dashboard — Live ticket status, SLA timer alerts, and department resolution counters.",
+        "order": 1,
+        "isPrimary": true
+      }
+    ],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-coral-bios-fms",
+    "clientType": "Franchise Network Operations",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "loan-application",
+    "index": "03",
+    "order": 3,
+    "title": "Loan Application & Financial Tracker",
+    "status": "published",
+    "isPrimary": true,
+    "kicker": "Financial Systems • EMI Engine • Verification Pipeline",
+    "focus": "Financial Systems • EMI Engine • Risk & Compliance • Verification Pipeline",
+    "description": "Structured a multi-parameter loan application and risk-assessment platform. Features dynamic EMI calculation, applicant credit profile classification, repayment schedule projections, and automated document verification workflows.",
+    "problemStatement": "Loan applications were previously processed through disconnected paper files and manual calculation sheets. Loan officers frequently miscalculated reducing-balance EMIs, documentation verification took over 48 hours, and tracking active loan books, overdue defaults, and disbursed amounts was prone to critical human error.",
+    "solution": "Developed a complete financial tracker and loan application processing engine. Built automated EMI calculators using PMT financial functions, multi-stage applicant verification tracking (KYC, Income, Collateral, Disbursal), automated repayment amortization schedules, and real-time portfolio health monitoring.",
+    "role": "Financial Systems & Process Analyst",
+    "implementationDetails": [
+      "Engineered dynamic mathematical models calculating monthly reducing-balance EMIs, total interest payouts, and amortization schedules.",
+      "Formulated standardized applicant evaluation scorecards assessing debt-to-income and credit risk tiers.",
+      "Constructed multi-stage verification status pipelines tracking KYC compliance and approval sign-offs.",
+      "Built summary portfolio dashboards tracking total active principal, monthly interest earnings, and delinquency rates."
+    ],
+    "features": [
+      "Real-time EMI calculation engine with variable tenure and rate adjustments",
+      "Applicant documentation & KYC verification pipeline tracking",
+      "Detailed principal vs. interest amortization schedule generation",
+      "Risk assessment classification and credit eligibility scoring",
+      "Disbursement tracking and active loan book summary analytics",
+      "Delinquency alerts and overdue installment tracking"
+    ],
+    "tech": [
+      "Advanced Excel",
+      "Financial Modeling",
+      "Data Analysis",
+      "Google Sheets"
+    ],
+    "impact": "Eliminated manual calculation errors, cut loan approval turnaround time by 60%, and automated complete repayment visibility.",
+    "metrics": [
+      {
+        "label": "Approval Turnaround",
+        "value": "48 Hrs → Same Day"
+      },
+      {
+        "label": "Calculation Accuracy",
+        "value": "100.0%"
+      },
+      {
+        "label": "Portfolio Oversight",
+        "value": "Full Book Visibility"
+      }
+    ],
+    "image": "/projects/project-3.png",
+    "images": [
+      {
+        "id": "img-loan-1",
+        "url": "/projects/project-3.png",
+        "caption": "Loan Application Engine — Applicant risk assessment, automated EMI schedules, and active portfolio summaries.",
+        "order": 1,
+        "isPrimary": true
+      }
+    ],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-loan-application-tracker",
+    "clientType": "Consumer & SME Lending",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "godown-management",
+    "index": "04",
+    "order": 4,
+    "title": "Godown & Multi-Warehouse Management",
+    "status": "published",
+    "isPrimary": true,
+    "kicker": "Warehouse Logistics • Stock Reconciliation • Inventory Automation",
+    "focus": "Warehouse Logistics • Stock Reconciliation • Reorder Logic • Inventory Automation",
+    "description": "Architected an end-to-end multi-godown inventory control system. Tracks inward stock, transfers between godowns, real-time bin allocation, reorder-level alerts, dispatch reconciliations, and dead-stock identification.",
+    "problemStatement": "Stock movements across primary storage godowns and dispatch centers were maintained in paper registers. Warehouse supervisors suffered inventory stockouts during peak demand, stock mismatches between physical items and ledger entries exceeded 12%, and stock transfers between godowns frequently went unrecorded.",
+    "solution": "Built a centralized multi-warehouse stock management system with real-time inward/outward tracking. Configured automated minimum buffer reorder triggers, inter-godown transfer challans, SKU-level batch tracking, and variance reconciliation reports that flagged discrepancies immediately upon receipt.",
+    "role": "Supply Chain & Operations Analyst",
+    "implementationDetails": [
+      "Structured standardized SKU inventory hierarchies across 500+ active product categories.",
+      "Engineered automated reorder alert formulas triggering purchase notifications when bins dropped below safety stock levels.",
+      "Implemented inter-godown stock transfer validation to prevent inventory discrepancies.",
+      "Designed daily stock reconciliation audit sheets comparing physical counts with expected system stock."
+    ],
+    "features": [
+      "Multi-godown inventory visibility across central and satellite depots",
+      "Automated stock inward, outward, and transfer logging",
+      "Dynamic reorder level calculations and low-stock warning indicators",
+      "Dead stock and slow-moving SKU aging analysis",
+      "Dispatch reconciliation and delivery challan matching",
+      "Stock audit and physical vs. system variance reporting"
+    ],
+    "tech": [
+      "Excel",
+      "Google Sheets",
+      "Inventory Analytics",
+      "Process Automation"
+    ],
+    "impact": "Reduced stockout incidents by 85%, eliminated inter-warehouse transfer discrepancies, and provided accurate inventory valuations.",
+    "metrics": [
+      {
+        "label": "Stockout Incidents",
+        "value": "↓ 85% Reduction"
+      },
+      {
+        "label": "Stock Audit Accuracy",
+        "value": "99.4%"
+      },
+      {
+        "label": "Inventory Visibility",
+        "value": "Real-Time / 24/7"
+      }
+    ],
+    "image": "/projects/project-4.png",
+    "images": [
+      {
+        "id": "img-godown-1",
+        "url": "/projects/project-4.png",
+        "caption": "Godown Management & Stock Control System — Inward/outward movements, reorder alert triggers, and inventory valuation.",
+        "order": 1,
+        "isPrimary": true
+      }
+    ],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-godown-management",
+    "clientType": "Warehousing & Supply Chain Logistics",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "data-management",
+    "index": "05",
+    "order": 5,
+    "title": "Data Management & Analytics Engine",
+    "status": "published",
+    "isPrimary": true,
+    "kicker": "Enterprise Analytics • ETL Pipeline • Process Optimization",
+    "focus": "Enterprise Analytics • Data Architecture • ETL Pipelines • Process Optimization",
+    "description": "Constructed an automated operational data pipeline consolidating multiple branch and department streams. Cleaned, structured, and normalized raw business inputs into unified management information dashboards with anomaly detection and automated report scheduling.",
+    "problemStatement": "Company operational data was scattered across disparate Excel workbooks, branch CSV dumps, and department Google Sheets. Senior management spent hours cleaning duplicated records, correcting date formats, and attempting to stitch together weekly business reviews, leading to decision paralysis.",
+    "solution": "Designed a unified Data Management and ETL (Extract, Transform, Load) engine. Automated data extraction from source sheets, applied programmatic data validation rules, purged duplicates, standardized date/currency schemas, and fed clean datasets directly into executive Power BI and Google Sheets dashboards.",
+    "role": "Data Systems Architect & Analytics Lead",
+    "implementationDetails": [
+      "Engineered data transformation scripts normalizing unstandardized inputs from 12+ operating branches.",
+      "Built automated validation check routines flagging outliers, invalid numbers, and missing records.",
+      "Structured star-schema data models connecting transactions, branch hierarchies, and timeline tables.",
+      "Configured automated scheduled report refreshes delivering executive PDF summaries directly to stakeholders."
+    ],
+    "features": [
+      "Multi-source operational data extraction and normalization",
+      "Automated deduplication and data cleansing validation rules",
+      "Unified star-schema reporting database architecture",
+      "Automated anomaly detection flagging unusual operational entries",
+      "Interactive executive cross-filtration by branch, product, and quarter",
+      "Scheduled automated report generation and distribution"
+    ],
+    "tech": [
+      "Power BI",
+      "Excel",
+      "Google Sheets",
+      "Google Apps Script",
+      "Data Modeling"
+    ],
+    "impact": "Eliminated 100% of manual data cleansing overhead, unified branch metrics into a single source of truth, and enabled data-driven executive decision-making.",
+    "metrics": [
+      {
+        "label": "Manual Data Prep",
+        "value": "↓ 100% Eliminated"
+      },
+      {
+        "label": "Data Consistency",
+        "value": "100% Normalized"
+      },
+      {
+        "label": "Source Branches",
+        "value": "12+ Unified"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-enterprise-data-engine",
+    "clientType": "Corporate Management & Multi-Branch Enterprise",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "payroll-analytics",
+    "index": "06",
+    "order": 6,
+    "title": "Payroll Analytics & Automation Platform",
+    "status": "published",
+    "isPrimary": false,
+    "kicker": "HR Operations • Payroll Engine • Dispute Elimination",
+    "focus": "HR Operations • Payroll Engine • One-Click Distribution",
+    "description": "Automated complex payroll calculations and one-click payslip distribution across the entire organization, reducing payroll-related employee queries by more than 90%.",
+    "problemStatement": "Monthly payroll was calculated manually using spreadsheets with custom deductions, attendance penalties, overtime rates, and statutory taxes. Errors were frequent, calculating pay for 100+ staff took 4 full days every month, and HR spent over 2 weeks resolving payment dispute queries.",
+    "solution": "Built an automated payroll calculation engine integrating biometric attendance logs, overtime rules, leaves, and salary structures. Engineered a Google Apps Script macro for one-click personalized PDF payslip generation and automated email distribution.",
+    "role": "Operations & HR Systems Analyst",
+    "implementationDetails": [
+      "Built dynamic salary deduction formulas factoring half-days, late arrivals, and approved paid leaves.",
+      "Created automated bulk payslip generator converting row data into clean individual PDF vouchers.",
+      "Integrated secure email automation sending encrypted payslips directly to employees' inboxes.",
+      "Designed HR audit dashboards summarizing total company salary disbursements, tax withholdings, and bonus allocations."
+    ],
+    "features": [
+      "Automated salary, bonus, overtime, and statutory deduction calculations",
+      "Biometric attendance integration factoring late arrivals and half-days",
+      "One-click batch PDF payslip generation",
+      "Automated confidential email payslip delivery",
+      "Payroll query logging and audit dashboard",
+      "Executive monthly compensation budget analytics"
+    ],
+    "tech": [
+      "Excel",
+      "Google Sheets",
+      "Google Apps Script",
+      "Automation"
+    ],
+    "impact": "Reduced payroll processing time from 4 days to under 2 hours, and eliminated payroll discrepancy queries by over 90%.",
+    "metrics": [
+      {
+        "label": "Query Reduction",
+        "value": "> 90% Fewer Disputes"
+      },
+      {
+        "label": "Processing Time",
+        "value": "4 Days → < 2 Hours"
+      },
+      {
+        "label": "Distribution",
+        "value": "1-Click Automated"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-payroll-analytics",
+    "clientType": "Corporate HR & Staff Management",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "performance-analytics",
+    "index": "07",
+    "order": 7,
+    "title": "Performance Analytics Dashboard",
+    "status": "published",
+    "isPrimary": false,
+    "kicker": "BI • Productivity Tracking • MIS Reporting",
+    "focus": "BI • Productivity Tracking • MIS Reporting",
+    "description": "Integrated attendance, daily reporting, and productivity data; reduced report generation from 2–3 days to approximately 30 minutes.",
+    "problemStatement": "Team leads were spending the first two days of every week manually collecting individual work logs, tallying attendance, and preparing management presentations. Data was stale by the time executive reviews took place.",
+    "solution": "Constructed an automated Power BI and Google Sheets performance analytics platform. Linked operational work logs and attendance datasets into unified team scorecards featuring automated productivity rankings, bottleneck highlights, and turnaround times.",
+    "role": "BI & Analytics Developer",
+    "implementationDetails": [
+      "Unified disparate operational activity logs into clean tabular data models.",
+      "Created interactive Power BI visualizations tracking individual and team KPI targets.",
+      "Automated scheduled Monday morning report generation for senior executive reviews.",
+      "Implemented trend analysis charting quarter-over-quarter output efficiency."
+    ],
+    "features": [
+      "Automated integration of attendance and daily output logs",
+      "Real-time individual and department productivity scorecards",
+      "Dynamic filtering by employee, team, project, and date range",
+      "Automated weekly summary generation cutting 2-3 days of manual work",
+      "KPI achievement benchmark indicators and performance quartiles",
+      "Exportable executive slide deck summaries"
+    ],
+    "tech": [
+      "Power BI",
+      "Excel",
+      "MIS Reporting",
+      "Data Analytics"
+    ],
+    "impact": "Slashed recurring reporting cycle from 2–3 days to 30 minutes, giving executives current productivity insights every Monday.",
+    "metrics": [
+      {
+        "label": "Report Cycle",
+        "value": "2-3 Days → ~30 Mins"
+      },
+      {
+        "label": "Data Freshness",
+        "value": "Live / Same Day"
+      },
+      {
+        "label": "Review Readiness",
+        "value": "100% On-Schedule"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-performance-dashboard",
+    "clientType": "Operations & Workforce Management",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "workforce-attendance",
+    "index": "08",
+    "order": 8,
+    "title": "Workforce Attendance Analytics",
+    "status": "published",
+    "isPrimary": false,
+    "kicker": "HR Analytics • Trend Analysis • Workforce Planning",
+    "focus": "HR Analytics • Trend Analysis • Workforce Planning",
+    "description": "Tracked late arrivals, half-days, and attendance trends to support data-driven workforce discipline and staffing planning.",
+    "problemStatement": "Chronic absenteeism and unpunctual shifts went unnoticed until month-end payroll reconciliation. Department supervisors had no data-backed way to analyze attendance patterns, identify recurring unnotified absences, or forecast shift coverage.",
+    "solution": "Engineered an attendance analytics engine transforming raw biometric timestamp logs into actionable behavioral insights. Automatically identified repeat late arrivals, calculated monthly attendance compliance rates, and predicted peak absence periods to optimize shift planning.",
+    "role": "Workforce Data Analyst",
+    "implementationDetails": [
+      "Developed parsing algorithms cleaning raw biometric clock-in/out records.",
+      "Configured automated color-coded punctuality matrices highlighting chronic tardiness.",
+      "Built department-level staffing availability projections.",
+      "Delivered monthly workforce punctuality and discipline analytics directly to HR heads."
+    ],
+    "features": [
+      "Automated raw biometric machine log parsing and validation",
+      "Late arrival and unnotified half-day frequency tracking",
+      "Department-level punctuality indices and ranking tables",
+      "Historical absenteeism trend forecasting for holiday periods",
+      "Disciplinary action compliance logs and alert notices",
+      "Automated monthly HR attendance audit summaries"
+    ],
+    "tech": [
+      "Excel",
+      "Google Sheets",
+      "Data Analysis",
+      "HR Systems"
+    ],
+    "impact": "Decreased unnotified late arrivals by 35% through transparent tracking and enabled proactive shift coverage planning.",
+    "metrics": [
+      {
+        "label": "Late Arrivals",
+        "value": "↓ 35% Reduction"
+      },
+      {
+        "label": "Shift Coverage",
+        "value": "98% Planned Staffing"
+      },
+      {
+        "label": "Tracking Automation",
+        "value": "100% Biometric"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-workforce-attendance",
+    "clientType": "HR Operations & Plant Management",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "operational-productivity",
+    "index": "09",
+    "order": 9,
+    "title": "Operational Productivity Tracker",
+    "status": "published",
+    "isPrimary": false,
+    "kicker": "Operations • Task Management • Productivity Boost",
+    "focus": "Operations • Task Management • Productivity Boost",
+    "description": "Enabled systematic task assignment, automated reminder workflows, and real-time completion visibility; improved overall team productivity by approximately 30%.",
+    "problemStatement": "Cross-department tasks and project deliverables were delegated verbally or lost in emails. Team members missed deadlines, leadership had no visibility into active bottlenecks, and task progress checks required constant follow-up meetings.",
+    "solution": "Built a structured task assignment and milestone tracking platform. Included automated email notifications for upcoming deadlines, overdue escalation flags, and executive workload balancing dashboards showing task completion rates per employee.",
+    "role": "Process Improvement Specialist",
+    "implementationDetails": [
+      "Designed standardized task intake forms with priority weighting and target dates.",
+      "Configured Google Apps Script triggers sending daily reminder digests to assignees.",
+      "Built status overview dashboards highlighting stuck tasks and overdue bottlenecks.",
+      "Implemented team velocity tracking to measure output improvements over time."
+    ],
+    "features": [
+      "Standardized task assignment with priority tags and delivery milestones",
+      "Automated reminder alerts sent 24 hours prior to deadlines",
+      "Overdue task escalation alerts sent to department managers",
+      "Team workload distribution charts to avoid burnout and bottlenecks",
+      "Task completion velocity and on-time delivery scoring",
+      "Weekly team efficiency summary scorecards"
+    ],
+    "tech": [
+      "Google Sheets",
+      "Google Apps Script",
+      "Process Automation",
+      "Task Workflows"
+    ],
+    "impact": "Improved overall operational output by ~30% and reduced missed deadlines by more than 70%.",
+    "metrics": [
+      {
+        "label": "Team Productivity",
+        "value": "+ ~30% Increase"
+      },
+      {
+        "label": "Missed Deadlines",
+        "value": "↓ 70% Reduction"
+      },
+      {
+        "label": "Follow-Up Time",
+        "value": "↓ 80% Saved"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-productivity-tracker",
+    "clientType": "Cross-Functional Business Operations",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "warehouse-picking",
+    "index": "10",
+    "order": 10,
+    "title": "Warehouse Picking Automation",
+    "status": "published",
+    "isPrimary": false,
+    "kicker": "Logistics • Warehouse Optimization • Slip Generation",
+    "focus": "Logistics • Warehouse Optimization • Slip Generation",
+    "description": "Generated rack, row, and bin-level picking slips automatically from customer orders to reduce product search time and maximize warehouse fulfillment throughput.",
+    "problemStatement": "Warehouse order pickers navigated warehouse aisles with printed invoices that listed items in random customer cart order. Pickers spent excessive time backtracking through aisles, order fulfillment took over 45 minutes per cart, and shipping bottlenecks occurred daily.",
+    "solution": "Architected an automated picking slip generation engine that maps order items directly to warehouse topography (Zone, Rack, Row, Bin). Dynamically sorted picking lists into optimal travel routes through the aisles, grouping multi-item orders for rapid bulk fulfillment.",
+    "role": "Logistics & Workflow Systems Specialist",
+    "implementationDetails": [
+      "Mapped spatial warehouse coordinates (Aisle, Rack, Shelf, Bin) for all inventory SKUs.",
+      "Engineered route-optimization sorting logic arranging picking slips in sequential walking path order.",
+      "Automated batch printing of visual picking manifests from incoming ecommerce orders.",
+      "Designed order fulfillment analytics tracking picker turnaround velocity."
+    ],
+    "features": [
+      "Automated order translation into rack, row, and bin-level picking slips",
+      "Sequential aisle walking route optimization to eliminate backtrack walking",
+      "Multi-order batch picking consolidation for high-velocity items",
+      "Barcode scanning reconciliation ready layout",
+      "Fulfillment turnaround time tracking per picker and shift",
+      "Shortage and stockout auto-flagging on picking run"
+    ],
+    "tech": [
+      "Excel",
+      "Google Sheets",
+      "Logistics Analytics",
+      "Automation"
+    ],
+    "impact": "Slashed picker transit time in warehouse aisles by 40%, cutting average fulfillment time from 45 mins to under 15 mins per order.",
+    "metrics": [
+      {
+        "label": "Fulfillment Time",
+        "value": "45 Mins → < 15 Mins"
+      },
+      {
+        "label": "Aisle Backtracking",
+        "value": "↓ 40% Transit Saved"
+      },
+      {
+        "label": "Order Accuracy",
+        "value": "99.7% Correct Picks"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-warehouse-picking",
+    "clientType": "E-Commerce & Warehouse Fulfillment",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  },
+  {
+    "id": "content-workflow",
+    "index": "11",
+    "order": 11,
+    "title": "Content Workflow & Pipeline Analytics",
+    "status": "published",
+    "isPrimary": false,
+    "kicker": "Media Operations • Pipeline Management • Output Analytics",
+    "focus": "Media Operations • Pipeline Management • Output Analytics",
+    "description": "Centralised video editing workloads and creative pipeline tracking; increased team productivity by approximately 40% and improved production data accuracy to 80–85%.",
+    "problemStatement": "A high-volume video production team handled dozens of active commercial edits without a centralized pipeline. Editors were overwhelmed, file versions were constantly lost or overwritten, client feedback was delayed, and production metrics were estimated on guesswork.",
+    "solution": "Built a centralized content workflow tracker monitoring every video from raw shoot ingest to final client sign-off. Built workload distribution views, review milestone trackers, automated status changes, and throughput analytics.",
+    "role": "Media Operations & Workflow Analyst",
+    "implementationDetails": [
+      "Structured a multi-stage production pipeline (Ingest, Rough Cut, Color/Audio, Review, Final Export).",
+      "Created editor capacity balancing dashboards preventing individual overloads.",
+      "Configured automated deadline alerts when edits remained in review stages over 24 hours.",
+      "Built executive throughput reports tracking completed minutes delivered per week."
+    ],
+    "features": [
+      "End-to-end video editing pipeline tracking across 5 production stages",
+      "Editor workload capacity balancing and asset assignment",
+      "Client revision cycle counters and approval bottleneck detection",
+      "Automated file version tracking and archive status logging",
+      "Weekly production output throughput analytics and team velocity charts",
+      "Accuracy metrics measuring on-time and error-free deliveries"
+    ],
+    "tech": [
+      "Google Sheets",
+      "Google Apps Script",
+      "Workflow Management",
+      "Data Analytics"
+    ],
+    "impact": "Boosted team production output by ~40%, eliminated lost project files, and lifted operational data accuracy to 80–85%.",
+    "metrics": [
+      {
+        "label": "Team Throughput",
+        "value": "+ ~40% Increase"
+      },
+      {
+        "label": "Data Accuracy",
+        "value": "80–85% Accuracy"
+      },
+      {
+        "label": "Revision Cycles",
+        "value": "↓ 30% Turnaround"
+      }
+    ],
+    "image": "",
+    "images": [],
+    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-content-workflow",
+    "clientType": "Digital Media & Creative Production Agency",
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-28T00:00:00.000Z"
+  }
+]

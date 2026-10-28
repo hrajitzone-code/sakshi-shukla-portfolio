@@ -3,20 +3,26 @@
 import { useState } from 'react';
 import { PROFILE } from '@/lib/data';
 import { useScroll } from '@/lib/scroll';
-import { Copy, Check, Linkedin, Phone, ArrowUp } from 'lucide-react';
+import { Copy, Check, Linkedin, Phone, ArrowUp, Mail, ArrowUpRight } from 'lucide-react';
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
   const { scrollToTarget } = useScroll();
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText(PROFILE.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(PROFILE.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   const titleTextLine1 = "Let's build";
   const titleTextLine2 = "something together.";
+
+  const emailSubject = encodeURIComponent("Business Automation & Reporting Inquiry — Sakshi Shukla");
+  const emailBody = encodeURIComponent("Hi Sakshi,\n\nI would like to discuss an operational workflow / reporting automation project for our team.\n\nBest regards,");
+  const mailtoLink = `mailto:${PROFILE.email}?subject=${emailSubject}&body=${emailBody}`;
 
   return (
     <footer id="contact" className="section-padding bg-[var(--paper)] border-t border-[var(--line)] relative overflow-hidden">
@@ -53,41 +59,58 @@ export function Contact() {
 
         {/* Contact Links & Circular Badge */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-end pb-16 border-b border-[var(--line)]">
-          {/* Email Copy Card */}
+          {/* Email Copy Card & Business CTAs */}
           <div className="space-y-6">
-            <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider block">
-              DIRECT EMAIL
-            </span>
+            <div className="space-y-1">
+              <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider block">
+                DIRECT CONSULTATION & BUSINESS INQUIRIES
+              </span>
+              <p className="text-xs sm:text-sm text-[var(--ink-2)]">
+                Have a manual reporting bottleneck, spreadsheet system, or operational workflow to automate?
+              </p>
+            </div>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <a
-                href={`mailto:${PROFILE.email}`}
+                href={mailtoLink}
                 className="text-lg sm:text-2xl md:text-4xl font-bold text-[var(--ink)] underline hover:text-[var(--mute)] transition-colors tracking-tight break-all sm:break-normal"
               >
                 {PROFILE.email}
               </a>
 
-              <button
-                onClick={handleCopyEmail}
-                className="px-4 py-2 rounded-full bg-white border border-[var(--line)] text-xs font-semibold text-[var(--ink)] flex items-center gap-2 shadow-sm hover:border-[var(--ink)] transition-all"
-                aria-label="Copy email address"
-              >
-                {copied ? (
-                  <>
-                    <Check size={14} className="text-emerald-600" />
-                    <span className="text-emerald-600 font-bold">Copied ✓</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={14} />
-                    <span>Copy</span>
-                  </>
-                )}
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="px-4 py-2 rounded-full bg-white border border-[var(--line)] text-xs font-semibold text-[var(--ink)] flex items-center gap-2 shadow-sm hover:border-[var(--ink)] transition-all cursor-pointer"
+                  aria-label="Copy email address"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={14} className="text-emerald-600" />
+                      <span className="text-emerald-600 font-bold">Copied ✓</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span>Copy Email</span>
+                    </>
+                  )}
+                </button>
+
+                <a
+                  href={mailtoLink}
+                  className="px-4 py-2 rounded-full bg-[var(--ink)] text-[var(--paper)] text-xs font-semibold flex items-center gap-1.5 shadow-sm hover:opacity-90 transition-opacity"
+                >
+                  <Mail size={13} />
+                  <span>Send Inquiry</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
             </div>
 
             {/* Phone & Socials */}
-            <div className="flex flex-wrap items-center gap-6 pt-4 text-sm font-medium">
+            <div className="flex flex-wrap items-center gap-6 pt-4 text-sm font-medium border-t border-[var(--line)]">
               <a
                 href={PROFILE.phoneHref}
                 className="flex items-center gap-2 text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors"
@@ -103,7 +126,8 @@ export function Contact() {
                 className="flex items-center gap-2 text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors"
               >
                 <Linkedin size={16} />
-                <span>LinkedIn</span>
+                <span>LinkedIn Profile</span>
+                <ArrowUpRight size={13} />
               </a>
             </div>
           </div>
@@ -134,7 +158,7 @@ export function Contact() {
 
           <button
             onClick={() => scrollToTarget('#hero')}
-            className="flex items-center gap-2 text-[var(--ink)] hover:underline"
+            className="flex items-center gap-2 text-[var(--ink)] hover:underline cursor-pointer"
           >
             <span>Back to top</span>
             <ArrowUp size={14} />

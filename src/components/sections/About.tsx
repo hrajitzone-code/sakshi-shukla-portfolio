@@ -212,11 +212,11 @@ export function About() {
                     </div>
 
                     <ul className="space-y-2 text-[11px] text-gray-300 font-sans leading-relaxed">
-                      <li>• Data & Business Operations Professional</li>
-                      <li>• BBA Graduate (Human Resources)</li>
-                      <li>• Reduced payroll queries by ~90%</li>
+                      <li>• Business Systems & MIS Specialist</li>
+                      <li>• Custom Reporting & Workflow Automation</li>
+                      <li>• Reduced payroll queries by &gt;90%</li>
                       <li>• Built Loan, Inventory & Daily Analytics Systems</li>
-                      <li>• 2+ Years in MIS & KPI Dashboards</li>
+                      <li>• 2+ Years in MIS, Dashboards & Process Design</li>
                     </ul>
                   </div>
 
