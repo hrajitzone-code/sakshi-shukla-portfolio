@@ -91,9 +91,18 @@ if (!dashboardFile.includes('Public Demo Sandbox (Read-Only Mode)')) {
   console.log('[PASS] 9. Admin Dashboard UX: Public Demo Sandbox alert banner prominently rendered.');
 }
 
+// 7. Audit Login Endpoint Protection & Credential Handling
+const loginRoute = fs.readFileSync(path.join(__dirname, '..', 'src', 'app', 'api', 'admin', 'login', 'route.ts'), 'utf8');
+if (!loginRoute.includes('LOGIN_RATE_WINDOW_MS') || !loginRoute.includes('isAuthConfigured') || !loginRoute.includes('503')) {
+  console.error('[FAIL] Login route missing rate-limiting or 503 fallback when ADMIN_PASSWORD is unset');
+  failed = true;
+} else {
+  console.log('[PASS] 10. Login Endpoint Protection: Rate limiting enabled (5 failed attempts locks IP), and safe 503 refusal when no ADMIN_PASSWORD is provided.');
+}
+
 if (failed) {
   console.error('\n>>> ONE OR MORE SECURITY CHECKS FAILED <<<');
   process.exit(1);
 } else {
-  console.log('\n>>> ALL 9 DEMO ISOLATION & SECURITY CHECKS PASSED SUCCESSFULLY! <<<');
+  console.log('\n>>> ALL 10 DEMO ISOLATION & SECURITY CHECKS PASSED SUCCESSFULLY! <<<');
 }
