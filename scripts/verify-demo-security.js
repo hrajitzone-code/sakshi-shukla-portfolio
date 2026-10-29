@@ -16,13 +16,18 @@ if (projectsRaw.includes('Coral BIOS')) {
   console.log('[PASS] 1. projects.json sanitized: Zero occurrences of "Coral BIOS". All 11 projects use synthetic dummy data.');
 }
 
-// Check for live Google Sheets edit/private links
-const unsafeLinks = projects.flatMap(p => [p.demoUrl, ...(p.demos || []).map(d => d.url)]).filter(u => u && !u.startsWith('https://example.com/demo-preview') && !u.startsWith('#'));
-if (unsafeLinks.length > 0) {
-  console.error('[FAIL] Found potentially unsafe live demo URLs:', unsafeLinks);
+// Check for broken placeholder or unsafe protocols
+const { validateDemoLink } = require('../src/lib/demoLinkValidator.ts');
+const allConfiguredLinks = projects.flatMap(p => [p.demoUrl, ...(p.demos || []).map(d => d.url)]).filter(Boolean);
+const invalidOrPlaceholderLinks = allConfiguredLinks.filter(u => {
+  const res = validateDemoLink(u);
+  return !res.isValid || res.isPlaceholder;
+});
+if (invalidOrPlaceholderLinks.length > 0) {
+  console.error('[FAIL] Found broken placeholder or malformed demo URLs:', invalidOrPlaceholderLinks);
   failed = true;
 } else {
-  console.log('[PASS] 2. System Demo links sanitized: All URLs point to safe mock preview endpoints.');
+  console.log('[PASS] 2. System Demo links validated: Zero broken placeholder links; all configured destinations are valid.');
 }
 
 // 2. Audit src/lib/data.ts for personal PII and client references

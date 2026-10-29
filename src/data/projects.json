@@ -419,20 +419,20 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "",
+    "demoUrl": "https://docs.google.com/spreadsheets/d/1WhlVBijwPHji2ShbTevFarbzLD5PNKzeyX4QJV9z_po/edit?gid=2086948889#gid=2086948889",
     "clientType": "Corporate HR & Staff Management",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-payroll-analytics-1",
-        "title": "Payroll Analytics & Automation Platform — Interactive System Demo",
-        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Payroll Analytics & Automation Platform.",
-        "url": "",
-        "type": "Google Sheets Model",
+        "title": "Salary slip Demo — Interactive System Demo",
+        "description": "Interactive operational demo model showcasing automated calculations and architecture for Payroll Analytics & Automation Platform.",
+        "url": "https://docs.google.com/spreadsheets/d/1WhlVBijwPHji2ShbTevFarbzLD5PNKzeyX4QJV9z_po/edit?gid=2086948889#gid=2086948889",
+        "type": "Google Sheet",
         "screenshot": "/projects/project-1.png",
         "order": 1,
-        "status": "draft"
+        "status": "published"
       }
     ]
   },

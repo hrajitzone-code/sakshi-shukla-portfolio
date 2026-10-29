@@ -1,4 +1,14 @@
-const { validateDemoUrl } = require('../src/lib/sheetsValidation.ts');
+const { validateDemoLink } = require('../src/lib/demoLinkValidator.ts');
+
+function validateDemoUrl(rawUrl) {
+  const res = validateDemoLink(rawUrl);
+  return {
+    isValid: res.isValid && res.destinationType !== 'none',
+    error: res.error,
+    sheetId: res.destinationType === 'google-sheets' ? res.cleanUrl.split('/d/')[1]?.split('/')[0] : undefined,
+    isGoogleSheets: res.destinationType === 'google-sheets',
+  };
+}
 
 console.log('=== TESTING DEMO LINK VALIDATION & ADMIN-TO-PUBLIC FLOW ===\n');
 
