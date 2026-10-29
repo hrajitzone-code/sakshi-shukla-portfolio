@@ -34,6 +34,7 @@ import {
   ChevronUp,
   ChevronDown,
 } from 'lucide-react';
+import { validateDemoLink, getUniversalDemoUrl, isPlaceholderUrl } from '@/lib/demoLinkValidator';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -219,13 +220,61 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!editingProject) return;
 
+    const cleanDemoUrl = editingProject.demoUrl?.trim() || '';
+    if (cleanDemoUrl) {
+      const val = validateDemoLink(cleanDemoUrl);
+      if (!val.isValid) {
+        alert(val.error || 'Invalid demo URL.');
+        return;
+      }
+    }
+
+    // Keep demos array in sync with top-level demoUrl
+    const updatedDemos: SystemDemo[] = [...(editingProject.demos || [])];
+    if (cleanDemoUrl) {
+      const val = validateDemoLink(cleanDemoUrl);
+      const destinationLabel = val.label || 'Interactive Demo';
+      if (updatedDemos.length > 0) {
+        updatedDemos[0] = {
+          ...updatedDemos[0],
+          url: cleanDemoUrl,
+          type: updatedDemos[0].type || destinationLabel,
+          status: 'published',
+        };
+      } else {
+        updatedDemos.push({
+          id: `demo-${Date.now()}`,
+          title: `${editingProject.title} — System Demo`,
+          url: cleanDemoUrl,
+          type: destinationLabel,
+          description: 'Live interactive operational demo with automated calculations.',
+          order: 1,
+          status: 'published',
+        });
+      }
+    } else {
+      if (updatedDemos.length > 0) {
+        updatedDemos[0] = {
+          ...updatedDemos[0],
+          url: '',
+          status: 'draft',
+        };
+      }
+    }
+
+    const payload = {
+      ...editingProject,
+      demoUrl: cleanDemoUrl,
+      demos: updatedDemos,
+    };
+
     setSavingProject(true);
     try {
       if (isCreatingNew) {
         const res = await fetch('/api/projects', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(editingProject),
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (res.ok && data.project) {
@@ -240,7 +289,7 @@ export default function AdminDashboard() {
         const res = await fetch(`/api/projects/${editingProject.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(editingProject),
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (res.ok && data.project) {
@@ -541,6 +590,12 @@ export default function AdminDashboard() {
       return;
     }
 
+    const validation = validateDemoLink(demoForm.url.trim());
+    if (!validation.isValid) {
+      alert(validation.error || 'Please provide a valid demo URL.');
+      return;
+    }
+
     const currentDemos: SystemDemo[] = [...(activeDemoProject.demos || [])];
 
     if (editingDemoIndex !== null && editingDemoIndex >= 0) {
@@ -550,7 +605,7 @@ export default function AdminDashboard() {
         ...existing,
         title: demoForm.title.trim(),
         url: demoForm.url.trim(),
-        type: demoForm.type || 'Interactive Demo',
+        type: demoForm.type || validation.label || 'Interactive Demo',
         description: demoForm.description || '',
         screenshot: demoForm.screenshot || '',
         status: (demoForm.status as ProjectStatus) || 'published',
@@ -562,7 +617,7 @@ export default function AdminDashboard() {
         id: `demo-${Date.now()}`,
         title: demoForm.title.trim(),
         url: demoForm.url.trim(),
-        type: demoForm.type || 'Interactive Demo',
+        type: demoForm.type || validation.label || 'Interactive Demo',
         description: demoForm.description || '',
         screenshot: demoForm.screenshot || '',
         order: nextOrder,
@@ -571,11 +626,15 @@ export default function AdminDashboard() {
       currentDemos.push(newDemo);
     }
 
+    // Keep top-level demoUrl synchronized with the first published demo
+    const primaryDemo = currentDemos.find((d) => d.status === 'published') || currentDemos[0];
+    const syncedDemoUrl = primaryDemo?.url?.trim() || '';
+
     try {
       const res = await fetch(`/api/projects/${activeDemoProject.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ demos: currentDemos }),
+        body: JSON.stringify({ demos: currentDemos, demoUrl: syncedDemoUrl }),
       });
       const data = await res.json();
       if (res.ok && data.project) {
@@ -616,7 +675,10 @@ export default function AdminDashboard() {
     demos[targetIndex] = temp;
 
     const reordered = demos.map((d, idx) => ({ ...d, order: idx + 1 }));
-    const updated = { ...activeDemoProject, demos: reordered };
+    const primaryDemo = reordered.find((d) => d.status === 'published') || reordered[0];
+    const syncedDemoUrl = primaryDemo?.url?.trim() || '';
+
+    const updated = { ...activeDemoProject, demos: reordered, demoUrl: syncedDemoUrl };
 
     setActiveDemoProject(updated);
     setProjects((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
@@ -624,7 +686,7 @@ export default function AdminDashboard() {
     await fetch(`/api/projects/${activeDemoProject.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ demos: reordered }),
+      body: JSON.stringify({ demos: reordered, demoUrl: syncedDemoUrl }),
     });
     showToast('Demo sequence updated');
   };
@@ -634,7 +696,10 @@ export default function AdminDashboard() {
     const demos = (activeDemoProject.demos || []).map((d) =>
       d.id === demoId ? { ...d, status: newStatus } : d
     );
-    const updated = { ...activeDemoProject, demos };
+    const primaryDemo = demos.find((d) => d.status === 'published') || demos[0];
+    const syncedDemoUrl = primaryDemo && primaryDemo.status === 'published' ? primaryDemo.url.trim() : '';
+
+    const updated = { ...activeDemoProject, demos, demoUrl: syncedDemoUrl };
 
     setActiveDemoProject(updated);
     setProjects((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
@@ -642,7 +707,7 @@ export default function AdminDashboard() {
     await fetch(`/api/projects/${activeDemoProject.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ demos }),
+      body: JSON.stringify({ demos, demoUrl: syncedDemoUrl }),
     });
     showToast(`System demo set to ${newStatus}`);
   };
@@ -655,7 +720,10 @@ export default function AdminDashboard() {
       .filter((d) => d.id !== demoId)
       .map((d, idx) => ({ ...d, order: idx + 1 }));
 
-    const updated = { ...activeDemoProject, demos: filtered };
+    const primaryDemo = filtered.find((d) => d.status === 'published') || filtered[0];
+    const syncedDemoUrl = primaryDemo ? primaryDemo.url.trim() : '';
+
+    const updated = { ...activeDemoProject, demos: filtered, demoUrl: syncedDemoUrl };
 
     setActiveDemoProject(updated);
     setProjects((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
@@ -663,7 +731,7 @@ export default function AdminDashboard() {
     await fetch(`/api/projects/${activeDemoProject.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ demos: filtered }),
+      body: JSON.stringify({ demos: filtered, demoUrl: syncedDemoUrl }),
     });
     showToast('System demo deleted');
   };
@@ -920,14 +988,42 @@ export default function AdminDashboard() {
 
                       {/* System Demos Manager Button */}
                       <td className="py-3.5 px-4 text-center">
-                        <button
-                          onClick={() => openDemoManager(p)}
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--paper)] hover:bg-[var(--ink)] hover:text-white transition-all text-[11px] font-mono text-[var(--ink)] cursor-pointer border border-[var(--line)]"
-                          title="Manage interactive system demos & links"
-                        >
-                          <MonitorPlay size={12} />
-                          <span>Demos ({p.demos?.length || 0})</span>
-                        </button>
+                        <div className="flex flex-col items-center gap-1">
+                          <button
+                            onClick={() => openDemoManager(p)}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--paper)] hover:bg-[var(--ink)] hover:text-white transition-all text-[11px] font-mono text-[var(--ink)] cursor-pointer border border-[var(--line)]"
+                            title="Manage interactive system demos & links"
+                          >
+                            <MonitorPlay size={12} />
+                            <span>Demos ({p.demos?.length || 0})</span>
+                          </button>
+                          {(() => {
+                            const demoUrl = getUniversalDemoUrl(p);
+                            if (demoUrl) {
+                              const val = validateDemoLink(demoUrl);
+                              return (
+                                <a
+                                  href={demoUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[10px] text-emerald-700 hover:underline inline-flex items-center gap-0.5 font-medium"
+                                  title={`Open ${val.label}: ${demoUrl}`}
+                                >
+                                  <span>{val.label} ↗</span>
+                                </a>
+                              );
+                            }
+                            return (
+                              <span
+                                className="text-[10px] text-amber-700 font-mono font-medium cursor-pointer hover:underline"
+                                onClick={() => openDemoManager(p)}
+                                title="Click to add a genuine Google Sheet, web app, or dashboard link"
+                              >
+                                ⚠️ Needs Link
+                              </span>
+                            );
+                          })()}
+                        </div>
                       </td>
 
                       {/* Image count & Multi-Image Manager */}
@@ -1102,6 +1198,25 @@ export default function AdminDashboard() {
                         placeholder="https://docs.google.com/spreadsheets/d/..."
                         className="w-full px-3 py-1.5 rounded-xl border border-[var(--line)] bg-white text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--ink)]"
                       />
+                      {demoForm.url && (
+                        (() => {
+                          const res = validateDemoLink(demoForm.url);
+                          if (!res.isValid) {
+                            return (
+                              <p className="text-[11px] text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200 mt-1 flex items-center gap-1.5">
+                                <AlertCircle size={12} className="shrink-0" />
+                                <span>{res.error}</span>
+                              </p>
+                            );
+                          }
+                          return (
+                            <p className="text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 mt-1 flex items-center gap-1.5">
+                              <Check size={12} className="shrink-0" />
+                              <span>Verified {res.label}: link is ready for testing.</span>
+                            </p>
+                          );
+                        })()
+                      )}
                     </div>
 
                     <div className="space-y-1">
@@ -1567,6 +1682,48 @@ export default function AdminDashboard() {
                   placeholder="Excel, Google Sheets, Power BI, Google Apps Script"
                   className="w-full px-3 py-2 rounded-xl border border-[var(--line)] bg-[var(--paper)] text-xs text-[var(--ink)] focus:outline-none"
                 />
+              </div>
+
+              {/* Row 7b: Google Sheets / Live System Demo Link */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-mono uppercase text-[var(--mute)] block">
+                  Project Demo / Live System Link (Google Sheets, Web App, Power BI, Docs, etc.)
+                </label>
+                <input
+                  type="url"
+                  value={editingProject.demoUrl || ''}
+                  onChange={(e) =>
+                    setEditingProject({
+                      ...editingProject,
+                      demoUrl: e.target.value,
+                    })
+                  }
+                  placeholder="https://docs.google.com/spreadsheets/d/... or https://my-app.vercel.app"
+                  className="w-full px-3 py-2 rounded-xl border border-[var(--line)] bg-[var(--paper)] text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--ink)]"
+                />
+                {editingProject.demoUrl ? (
+                  (() => {
+                    const res = validateDemoLink(editingProject.demoUrl);
+                    if (!res.isValid) {
+                      return (
+                        <p className="text-[11px] text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200 mt-1 flex items-center gap-1.5">
+                          <AlertCircle size={12} className="shrink-0" />
+                          <span>{res.error}</span>
+                        </p>
+                      );
+                    }
+                    return (
+                      <p className="text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 mt-1 flex items-center gap-1.5">
+                        <Check size={12} className="shrink-0" />
+                        <span>Verified {res.label}: link is ready for public Demo button.</span>
+                      </p>
+                    );
+                  })()
+                ) : (
+                  <p className="text-[11px] text-[var(--mute)] mt-1">
+                    Leave empty if this project currently has no interactive demo. The public Demo button will be safely hidden.
+                  </p>
+                )}
               </div>
 
               {/* Row 8: Key Features List Manager */}

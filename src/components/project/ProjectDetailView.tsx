@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { DetailedProject, ProjectImage } from '@/types/project';
 import { TechLogo } from '@/components/ui/TechLogo';
+import { isPlaceholderUrl, getUniversalDemoUrl } from '@/lib/demoLinkValidator';
 import {
   ArrowLeft,
   ArrowRight,
@@ -497,7 +498,11 @@ export function ProjectDetailView({ project: initialProject, isAdmin = false }: 
             {/* System Demos Section */}
             {(() => {
               const visibleDemos = (project.demos || [])
-                .filter((d) => (isAdmin ? true : d.status === 'published'))
+                .filter((d) =>
+                  isAdmin
+                    ? Boolean(d.url?.trim())
+                    : d.status === 'published' && Boolean(d.url?.trim()) && !isPlaceholderUrl(d.url)
+                )
                 .sort((a, b) => a.order - b.order);
 
               if (visibleDemos.length > 0) {
@@ -550,15 +555,17 @@ export function ProjectDetailView({ project: initialProject, isAdmin = false }: 
                             </div>
                           )}
 
-                          <p className="text-xs text-[var(--ink-2)] leading-relaxed">
-                            {demo.description}
-                          </p>
+                          {demo.description && (
+                            <p className="text-xs text-[var(--ink-2)] leading-relaxed">
+                              {demo.description}
+                            </p>
+                          )}
 
                           <a
                             href={demo.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-primary w-full text-xs py-2 flex items-center justify-center gap-1.5"
+                            className="btn-primary w-full text-xs py-2 flex items-center justify-center gap-1.5 font-semibold"
                           >
                             <span>Open System Demo</span>
                             <ExternalLink size={12} />
@@ -570,20 +577,21 @@ export function ProjectDetailView({ project: initialProject, isAdmin = false }: 
                 );
               }
 
-              if (project.demoUrl) {
+              const fallbackDemoUrl = getUniversalDemoUrl(project);
+              if (fallbackDemoUrl) {
                 return (
                   <div className="bg-white p-6 rounded-3xl border border-[var(--line)] shadow-sm space-y-3">
                     <span className="font-mono text-xs text-[var(--mute)] uppercase tracking-wider block">
                       SYSTEM DEMO
                     </span>
                     <p className="text-xs text-[var(--ink-2)]">
-                      Preview an interactive structure or live template of this business system.
+                      Preview an interactive structure, spreadsheet, or live deployment of this system.
                     </p>
                     <a
-                      href={project.demoUrl}
+                      href={fallbackDemoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
+                      className="btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 font-semibold"
                     >
                       <span>Open System Demo</span>
                       <ExternalLink size={13} />

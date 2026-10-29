@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { PRIMARY_PROJECTS, SECONDARY_PROJECTS } from '@/lib/data';
 import { DetailedProject } from '@/types/project';
 import { TechLogo } from '@/components/ui/TechLogo';
-import { Plus, CheckCircle2, ArrowRight, Share2, Check } from 'lucide-react';
+import { Plus, CheckCircle2, ArrowRight, Share2, Check, ExternalLink } from 'lucide-react';
+import { getUniversalDemoUrl } from '@/lib/demoLinkValidator';
 
 interface WorkProps {
   initialProjects?: DetailedProject[];
@@ -178,36 +179,55 @@ export function Work({ initialProjects }: WorkProps) {
                           </div>
                         </div>
 
-                        {/* View Case Study & Share Project Action Buttons */}
-                        <div className="flex items-center gap-2.5 pt-3 border-t border-[var(--line)] shrink-0 mt-3 z-10">
-                          <Link
-                            href={`/projects/${project.id}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="btn-primary text-xs py-2 px-3.5 flex items-center gap-1.5 cursor-pointer font-semibold shadow-sm hover:shadow"
-                          >
-                            <span>View Case Study</span>
-                            <ArrowRight size={13} />
-                          </Link>
+                        {/* View Case Study, Demo & Share Project Action Buttons */}
+                        {(() => {
+                          const demoUrl = getUniversalDemoUrl(project);
+                          return (
+                            <div className="flex items-center gap-2 pt-3 border-t border-[var(--line)] shrink-0 mt-3 z-10 flex-wrap">
+                              <Link
+                                href={`/projects/${project.id}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="btn-primary text-xs py-2 px-3 flex items-center gap-1.5 cursor-pointer font-semibold shadow-sm hover:shadow"
+                              >
+                                <span>View Case Study</span>
+                                <ArrowRight size={13} />
+                              </Link>
 
-                          <button
-                            type="button"
-                            onClick={(e) => handleCopyProjectLink(e, project.id)}
-                            className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer font-semibold hover:border-[var(--ink)]"
-                            aria-label={`Share ${project.title}`}
-                          >
-                            {copiedId === project.id ? (
-                              <>
-                                <Check size={13} className="text-emerald-600" />
-                                <span className="text-emerald-600 font-semibold">Copied!</span>
-                              </>
-                            ) : (
-                              <>
-                                <Share2 size={13} />
-                                <span>Share Project</span>
-                              </>
-                            )}
-                          </button>
-                        </div>
+                              {demoUrl && (
+                                <a
+                                  href={demoUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer font-semibold hover:border-[var(--ink)]"
+                                  title="Open Live System Demo / Spreadsheet"
+                                >
+                                  <span>Demo</span>
+                                  <ExternalLink size={12} />
+                                </a>
+                              )}
+
+                              <button
+                                type="button"
+                                onClick={(e) => handleCopyProjectLink(e, project.id)}
+                                className="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 bg-white cursor-pointer font-semibold hover:border-[var(--ink)]"
+                                aria-label={`Share ${project.title}`}
+                              >
+                                {copiedId === project.id ? (
+                                  <>
+                                    <Check size={13} className="text-emerald-600" />
+                                    <span className="text-emerald-600 font-semibold">Copied!</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Share2 size={13} />
+                                    <span>Share Project</span>
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          );
+                        })()}
                       </div>
 
                       {/* Right Column: Existing Visual or Text Focus Card */}
@@ -301,36 +321,55 @@ export function Work({ initialProjects }: WorkProps) {
                         <strong>Impact:</strong> {project.impact}
                       </div>
 
-                      {/* Action Buttons: View Case Study & Share Project */}
-                      <div className="flex items-center gap-2 pt-3 border-t border-[var(--line)]">
-                        <Link
-                          href={`/projects/${project.id}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="btn-primary text-xs py-2.5 px-3.5 flex-1 flex items-center justify-center gap-1.5 cursor-pointer font-semibold text-center shadow-sm"
-                        >
-                          <span>View Case Study</span>
-                          <ArrowRight size={13} />
-                        </Link>
+                      {/* Action Buttons: View Case Study, Demo & Share Project */}
+                      {(() => {
+                        const demoUrl = getUniversalDemoUrl(project);
+                        return (
+                          <div className="flex items-center gap-2 pt-3 border-t border-[var(--line)] flex-wrap">
+                            <Link
+                              href={`/projects/${project.id}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="btn-primary text-xs py-2.5 px-3 flex-1 flex items-center justify-center gap-1.5 cursor-pointer font-semibold text-center shadow-sm"
+                            >
+                              <span>View Case Study</span>
+                              <ArrowRight size={13} />
+                            </Link>
 
-                        <button
-                          type="button"
-                          onClick={(e) => handleCopyProjectLink(e, project.id)}
-                          className="btn-secondary text-xs py-2.5 px-3.5 flex-1 sm:flex-initial flex items-center justify-center gap-1.5 bg-white cursor-pointer font-semibold"
-                          aria-label={`Share ${project.title}`}
-                        >
-                          {copiedId === project.id ? (
-                            <>
-                              <Check size={13} className="text-emerald-600" />
-                              <span className="text-emerald-600 font-semibold">Copied!</span>
-                            </>
-                          ) : (
-                            <>
-                              <Share2 size={13} />
-                              <span>Share Project</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
+                            {demoUrl && (
+                              <a
+                                href={demoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="btn-secondary text-xs py-2.5 px-3 flex items-center justify-center gap-1.5 bg-white cursor-pointer font-semibold"
+                                title="Open Live System Demo / Spreadsheet"
+                              >
+                                <span>Demo</span>
+                                <ExternalLink size={12} />
+                              </a>
+                            )}
+
+                            <button
+                              type="button"
+                              onClick={(e) => handleCopyProjectLink(e, project.id)}
+                              className="btn-secondary text-xs py-2.5 px-3 flex-1 sm:flex-initial flex items-center justify-center gap-1.5 bg-white cursor-pointer font-semibold"
+                              aria-label={`Share ${project.title}`}
+                            >
+                              {copiedId === project.id ? (
+                                <>
+                                  <Check size={13} className="text-emerald-600" />
+                                  <span className="text-emerald-600 font-semibold">Copied!</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Share2 size={13} />
+                                  <span>Share Project</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        );
+                      })()}
                     </div>
                   )}
                 </div>
@@ -399,35 +438,53 @@ export function Work({ initialProjects }: WorkProps) {
                     ))}
                   </div>
 
-                  {/* Action Buttons: View Case Study & Share Project */}
-                  <div className="flex items-center gap-2 pt-3 border-t border-[var(--line)]">
-                    <Link
-                      href={`/projects/${proj.id}`}
-                      className="btn-primary text-xs py-2 px-3 flex-1 flex items-center justify-center gap-1.5 cursor-pointer font-semibold text-center shadow-sm"
-                    >
-                      <span>View Case Study</span>
-                      <ArrowRight size={12} />
-                    </Link>
+                  {/* Action Buttons: View Case Study, Demo & Share Project */}
+                  {(() => {
+                    const projDemoUrl = getUniversalDemoUrl(proj);
+                    return (
+                      <div className="flex items-center gap-1.5 pt-3 border-t border-[var(--line)] flex-wrap">
+                        <Link
+                          href={`/projects/${proj.id}`}
+                          className="btn-primary text-xs py-2 px-2.5 flex-1 flex items-center justify-center gap-1 cursor-pointer font-semibold text-center shadow-sm"
+                        >
+                          <span>View Case Study</span>
+                          <ArrowRight size={12} />
+                        </Link>
 
-                    <button
-                      type="button"
-                      onClick={(e) => handleCopyProjectLink(e, proj.id)}
-                      className="btn-secondary text-xs py-2 px-3 flex items-center justify-center gap-1.5 bg-white cursor-pointer font-semibold shrink-0"
-                      aria-label={`Share ${proj.title}`}
-                    >
-                      {copiedId === proj.id ? (
-                        <>
-                          <Check size={12} className="text-emerald-600" />
-                          <span className="text-emerald-600 font-semibold">Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Share2 size={12} />
-                          <span>Share Project</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
+                        {projDemoUrl && (
+                          <a
+                            href={projDemoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-secondary text-xs py-2 px-2.5 flex items-center justify-center gap-1 bg-white cursor-pointer font-semibold shrink-0"
+                            title="Open Live System Demo / Spreadsheet"
+                          >
+                            <span>Demo</span>
+                            <ExternalLink size={11} />
+                          </a>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={(e) => handleCopyProjectLink(e, proj.id)}
+                          className="btn-secondary text-xs py-2 px-2 flex items-center justify-center gap-1 bg-white cursor-pointer font-semibold shrink-0"
+                          aria-label={`Share ${proj.title}`}
+                        >
+                          {copiedId === proj.id ? (
+                            <>
+                              <Check size={12} className="text-emerald-600" />
+                              <span className="text-emerald-600 font-semibold">Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Share2 size={12} />
+                              <span>Share</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
             ))}

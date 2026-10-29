@@ -43,6 +43,8 @@ export interface PrimaryProject {
   tech: string[];
   impact: string;
   image: string;
+  demoUrl?: string;
+  demos?: any[];
 }
 
 export interface SecondaryProject {
@@ -53,6 +55,8 @@ export interface SecondaryProject {
   description: string;
   impact: string;
   tech: string[];
+  demoUrl?: string;
+  demos?: any[];
 }
 
 export interface ExperienceItem {
