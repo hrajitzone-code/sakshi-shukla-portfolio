@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProjectById, updateProject, deleteProject } from '@/lib/projectStore';
-import { isAdminAuthenticated } from '@/lib/auth';
+import { isAdminAuthenticated, IS_DEMO_MODE } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest, { params }: RouteContext) {
     if (!project) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 });
     }
-    return NextResponse.json({ success: true, project, isAdmin });
+    return NextResponse.json({ success: true, project, isAdmin, isDemoMode: IS_DEMO_MODE });
   } catch (err) {
     console.error('Error fetching project:', err);
     return NextResponse.json({ error: 'Server error fetching project' }, { status: 500 });
@@ -27,6 +27,13 @@ export async function GET(req: NextRequest, { params }: RouteContext) {
 
 export async function PUT(req: NextRequest, { params }: RouteContext) {
   try {
+    if (IS_DEMO_MODE) {
+      return NextResponse.json(
+        { error: 'Project updates are disabled in this public demo environment. The database is protected in read-only mode.' },
+        { status: 403 }
+      );
+    }
+
     const isAdmin = await isAdminAuthenticated();
     if (!isAdmin) {
       return NextResponse.json({ error: 'Unauthorized. Admin authorization required.' }, { status: 401 });
@@ -49,6 +56,13 @@ export async function PUT(req: NextRequest, { params }: RouteContext) {
 
 export async function DELETE(req: NextRequest, { params }: RouteContext) {
   try {
+    if (IS_DEMO_MODE) {
+      return NextResponse.json(
+        { error: 'Project deletion is disabled in this public demo environment. The database is protected in read-only mode.' },
+        { status: 403 }
+      );
+    }
+
     const isAdmin = await isAdminAuthenticated();
     if (!isAdmin) {
       return NextResponse.json({ error: 'Unauthorized. Admin authorization required.' }, { status: 401 });

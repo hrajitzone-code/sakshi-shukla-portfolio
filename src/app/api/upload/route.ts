@@ -1,15 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { isAdminAuthenticated } from '@/lib/auth';
+import { isAdminAuthenticated, IS_DEMO_MODE } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
+const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB ceiling
+const ALLOWED_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+
 export async function POST(req: NextRequest) {
   try {
+    // 1. Demo Mode Protection
+    if (IS_DEMO_MODE) {
+      return NextResponse.json(
+        { error: 'Media uploads are disabled in this public demo environment to prevent unauthorized storage usage.' },
+        { status: 403 }
+      );
+    }
+
+    // 2. Authentication Verification
     const isAdmin = await isAdminAuthenticated();
     if (!isAdmin) {
-      return NextResponse.json({ error: 'Unauthorized. Admin authorization required to upload media.' }, { status: 401 });
+      return NextResponse.json(
+        { error: 'Unauthorized. Admin authorization required to upload media.' },
+        { status: 401 }
+      );
     }
 
     const formData = await req.formData();
@@ -27,6 +42,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No files provided for upload.' }, { status: 400 });
     }
 
+    // 3. Strict Validation: Size & MIME type
+    for (const file of allFiles) {
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        return NextResponse.json(
+          { error: `File "${file.name}" exceeds the maximum allowed size of 5 MB.` },
+          { status: 400 }
+        );
+      }
+      if (!ALLOWED_MIME_TYPES.has(file.type)) {
+        return NextResponse.json(
+          { error: `File "${file.name}" has unsupported format. Allowed formats: PNG, JPEG, WebP.` },
+          { status: 400 }
+        );
+      }
+    }
+
     const uploadDir = path.join(process.cwd(), 'public', 'uploads');
     try {
       if (!fs.existsSync(uploadDir)) {
@@ -40,10 +71,6 @@ export async function POST(req: NextRequest) {
 
     for (let i = 0; i < allFiles.length; i++) {
       const file = allFiles[i];
-      if (!file.type.startsWith('image/')) {
-        continue;
-      }
-
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 

@@ -729,6 +729,18 @@ export default function AdminDashboard() {
 
       {/* Main Studio Content */}
       <main className="max-w-[1300px] mx-auto px-4 sm:px-8 py-8 space-y-6">
+        {/* Public Demo Sandbox Banner */}
+        <div className="bg-amber-50/90 border border-amber-200 text-amber-900 px-4 sm:px-5 py-3.5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-sm">
+          <div className="flex items-center gap-2.5">
+            <AlertCircle size={16} className="text-amber-600 shrink-0" />
+            <span>
+              <strong>Public Demo Sandbox (Read-Only Mode):</strong> Administrative tools are live for testing. All mutations (project updates, system demos, and image uploads) are disabled on the server to preserve database integrity.
+            </span>
+          </div>
+          <span className="font-mono text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-amber-200 text-amber-800 shrink-0">
+            Read-Only Sandbox
+          </span>
+        </div>
         {/* Top Control Bar */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-5 rounded-3xl border border-[var(--line)] shadow-sm">
           <div>

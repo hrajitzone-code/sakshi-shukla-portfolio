@@ -1,16 +1,31 @@
 import { cookies } from 'next/headers';
 import crypto from 'crypto';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'sakshi-admin-2026';
-const ADMIN_SECRET = process.env.ADMIN_SECRET || 'sakshi-shukla-portfolio-secret-salt-2026';
-export const ADMIN_COOKIE_NAME = 'sakshi_admin_token';
+/**
+ * Demo Mode Flag:
+ * When enabled, all mutating actions (write, edit, delete, upload) are strictly disabled.
+ */
+export const IS_DEMO_MODE = true;
+
+// Ephemeral runtime secret generated per server process instance if not configured in env
+// This prevents hardcoding secrets into source code while keeping the system operational.
+const RUNTIME_SALT = crypto.randomBytes(32).toString('hex');
+const ADMIN_SECRET = process.env.ADMIN_SECRET || RUNTIME_SALT;
+export const ADMIN_COOKIE_NAME = 'sakshi_demo_admin_token';
+
+/**
+ * Checks whether custom admin password is configured via environment variables
+ */
+export function isAuthConfigured(): boolean {
+  return Boolean(process.env.ADMIN_PASSWORD && process.env.ADMIN_PASSWORD.length >= 8);
+}
 
 /**
  * Creates a signed token incorporating timestamp and HMAC signature
  */
 export function generateAdminToken(): string {
   const timestamp = Date.now().toString();
-  const payload = `admin_${timestamp}`;
+  const payload = `demo_admin_${timestamp}`;
   const hmac = crypto.createHmac('sha256', ADMIN_SECRET).update(payload).digest('hex');
   return `${payload}.${hmac}`;
 }
@@ -32,11 +47,11 @@ export function verifyAdminToken(token?: string | null): boolean {
 
     if (!isValidSignature) return false;
 
-    // Token max age: 7 days
+    // Token max age: 24 hours in demo mode
     const parts = payload.split('_');
-    if (parts.length >= 2) {
-      const ts = parseInt(parts[1], 10);
-      if (Date.now() - ts > 7 * 24 * 60 * 60 * 1000) {
+    if (parts.length >= 3) {
+      const ts = parseInt(parts[2], 10);
+      if (Date.now() - ts > 24 * 60 * 60 * 1000) {
         return false;
       }
     }
@@ -61,9 +76,24 @@ export async function isAdminAuthenticated(): Promise<boolean> {
 }
 
 /**
- * Validates password entered by administrator
+ * Validates password entered by administrator using timing-safe comparison.
+ * Requires ADMIN_PASSWORD environment variable; no hardcoded credentials exist.
  */
 export function checkAdminPassword(password: string): boolean {
-  if (!password) return false;
-  return password.trim() === ADMIN_PASSWORD;
+  if (!password || typeof password !== 'string') return false;
+
+  const envPassword = process.env.ADMIN_PASSWORD;
+  if (!envPassword) {
+    // If not set in environment, refuse login safely
+    return false;
+  }
+
+  const inputBuffer = Buffer.from(password.trim());
+  const expectedBuffer = Buffer.from(envPassword.trim());
+
+  if (inputBuffer.length !== expectedBuffer.length) {
+    return false;
+  }
+
+  return crypto.timingSafeEqual(inputBuffer, expectedBuffer);
 }

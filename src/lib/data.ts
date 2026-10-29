@@ -84,12 +84,12 @@ export const PROFILE: Profile = {
   initials: 'SS',
   role: 'Business Analytics & MIS Specialist | Reporting & Workflow Automation',
   shortRole: 'Business Systems & Automation Specialist',
-  email: 'sakshishukla1167@gmail.com',
-  phone: '8200619139',
-  phoneHref: 'tel:8200619139',
-  location: 'Surat, Gujarat, India',
-  linkedin: 'https://linkedin.com/in/sakshi-shukla-7047252a0',
-  resumePdf: '/Sakshi_Shukla_Data_Business_Analyst_Resume.pdf',
+  email: 'demo-inquiries@example.com',
+  phone: '+1 (555) 019-2834',
+  phoneHref: 'tel:+15550192834',
+  location: 'Remote / Available Globally',
+  linkedin: 'https://linkedin.com/in/demo-analyst',
+  resumePdf: '/Resume.pdf',
   resumeSummary:
     'Helping business owners, founders, and operational leaders replace manual spreadsheets, eliminate reporting bottlenecks, and automate core workflows. 2+ years of hands-on experience building custom MIS dashboards, automated payroll systems, warehouse picking workflows, and business intelligence reporting that cut turnaround times from days to minutes.',
   shortLine:
@@ -380,7 +380,7 @@ export const PRIMARY_PROJECTS: PrimaryProject[] = [
   {
     id: 'coral-bios-daily-report',
     index: '01',
-    title: 'Coral BIOS Daily Report',
+    title: 'Nova Systems Daily Operations Report',
     kicker: 'Data Analytics • MIS • KPI Reporting',
     focus: 'Data Analytics • MIS • Dashboard Development • KPI Reporting',
     description:
@@ -398,7 +398,7 @@ export const PRIMARY_PROJECTS: PrimaryProject[] = [
   {
     id: 'coral-bios-fms',
     index: '02',
-    title: 'Coral BIOS FMS',
+    title: 'Apex Franchise Operations System',
     kicker: 'Business Analysis • CRM • MIS • Operations',
     focus: 'Business Analysis • CRM • Workflow Design • MIS • Operations',
     description:
@@ -533,8 +533,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     id: 'exp-1',
     period: 'Present',
     title: 'MIS / Business Operations & Process Automation',
-    organization: 'AJIT ZONE PVT. LTD.',
-    location: 'Surat, Gujarat',
+    organization: 'Apex Enterprise Solutions (Demo)',
+    location: 'Remote / Global',
     type: 'experience',
     details: [
       'Worked across business reporting, operational data management, dashboards, automation, and process improvement.',

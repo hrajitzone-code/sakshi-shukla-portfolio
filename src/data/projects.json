@@ -3,7 +3,7 @@
     "id": "coral-bios-daily-report",
     "index": "01",
     "order": 1,
-    "title": "Coral BIOS Daily Report",
+    "title": "Nova Systems Daily Operations Report",
     "status": "published",
     "isPrimary": true,
     "kicker": "Data Analytics • MIS • Executive KPI Reporting",
@@ -58,29 +58,19 @@
         "isPrimary": true
       }
     ],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-coral-bios-daily-report",
-    "clientType": "Multi-Channel Retail & Distribution",
+    "demoUrl": "https://example.com/demo-preview/coral-bios-daily-report",
+    "clientType": "Nova Multi-Channel Retail & Distribution (Sample)",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-coral-bios-daily-report-1",
-        "title": "Coral BIOS Daily Report — System Demo",
-        "description": "Interactive preview and operational architecture model for Coral BIOS Daily Report.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-coral-bios-daily-report",
+        "title": "Nova Systems Daily Operations Report — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Nova Systems Daily Operations Report.",
+        "url": "https://example.com/demo-preview/coral-bios-daily-report",
         "type": "Power BI Analytics",
         "screenshot": "/projects/project-1.png",
         "order": 1,
-        "status": "published"
-      },
-      {
-        "id": "demo-test-1793180063521",
-        "title": "Automated Test Sheet Demo",
-        "url": "https://docs.google.com/spreadsheets/d/test-demo-sheet",
-        "type": "Interactive Spreadsheet",
-        "description": "Real-time test demo with automated calculations.",
-        "screenshot": "/uploads/test-screenshot.png",
-        "order": 2,
         "status": "published"
       }
     ]
@@ -89,7 +79,7 @@
     "id": "coral-bios-fms",
     "index": "02",
     "order": 2,
-    "title": "Coral BIOS FMS (Franchise Management)",
+    "title": "Apex Franchise Management System (FMS)",
     "status": "published",
     "isPrimary": true,
     "kicker": "Franchise Operations • Ticket Tracking • SLA Monitoring",
@@ -144,16 +134,16 @@
         "isPrimary": true
       }
     ],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-coral-bios-fms",
-    "clientType": "Franchise Network Operations",
+    "demoUrl": "https://example.com/demo-preview/coral-bios-fms",
+    "clientType": "Apex Multi-Unit Franchise Network (Sample)",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-coral-bios-fms-1",
-        "title": "Coral BIOS FMS (Franchise Management) — System Demo",
-        "description": "Interactive preview and operational architecture model for Coral BIOS FMS (Franchise Management).",
-        "url": "https://docs.google.com/spreadsheets/d/preview-coral-bios-fms",
+        "title": "Apex Franchise Management System (FMS) — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Apex Franchise Management System (FMS).",
+        "url": "https://example.com/demo-preview/coral-bios-fms",
         "type": "Google Sheets Model",
         "screenshot": "/projects/project-2.png",
         "order": 1,
@@ -165,7 +155,7 @@
     "id": "loan-application",
     "index": "03",
     "order": 3,
-    "title": "Loan Application & Financial Tracker",
+    "title": "Horizon Lending & Financial Underwriting Tracker",
     "status": "published",
     "isPrimary": true,
     "kicker": "Financial Systems • EMI Engine • Verification Pipeline",
@@ -219,16 +209,16 @@
         "isPrimary": true
       }
     ],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-loan-application-tracker",
-    "clientType": "Consumer & SME Lending",
+    "demoUrl": "https://example.com/demo-preview/loan-application",
+    "clientType": "Horizon Consumer & SME Lending (Sample)",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-loan-application-1",
-        "title": "Loan Application & Financial Tracker — System Demo",
-        "description": "Interactive preview and operational architecture model for Loan Application & Financial Tracker.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-loan-application-tracker",
+        "title": "Horizon Lending & Financial Underwriting Tracker — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Horizon Lending & Financial Underwriting Tracker.",
+        "url": "https://example.com/demo-preview/loan-application",
         "type": "Google Sheets Model",
         "screenshot": "/projects/project-3.png",
         "order": 1,
@@ -240,7 +230,7 @@
     "id": "godown-management",
     "index": "04",
     "order": 4,
-    "title": "Godown & Multi-Warehouse Management",
+    "title": "Pinnacle Multi-Warehouse & Stock Management",
     "status": "published",
     "isPrimary": true,
     "kicker": "Warehouse Logistics • Stock Reconciliation • Inventory Automation",
@@ -294,16 +284,16 @@
         "isPrimary": true
       }
     ],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-godown-management",
-    "clientType": "Warehousing & Supply Chain Logistics",
+    "demoUrl": "https://example.com/demo-preview/godown-management",
+    "clientType": "Pinnacle Supply Chain Logistics (Sample)",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-godown-management-1",
-        "title": "Godown & Multi-Warehouse Management — System Demo",
-        "description": "Interactive preview and operational architecture model for Godown & Multi-Warehouse Management.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-godown-management",
+        "title": "Pinnacle Multi-Warehouse & Stock Management — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Pinnacle Multi-Warehouse & Stock Management.",
+        "url": "https://example.com/demo-preview/godown-management",
         "type": "Google Sheets Model",
         "screenshot": "/projects/project-4.png",
         "order": 1,
@@ -315,7 +305,7 @@
     "id": "data-management",
     "index": "05",
     "order": 5,
-    "title": "Data Management & Analytics Engine",
+    "title": "Enterprise Data Pipeline & Analytics Engine",
     "status": "published",
     "isPrimary": true,
     "kicker": "Enterprise Analytics • ETL Pipeline • Process Optimization",
@@ -362,18 +352,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-enterprise-data-engine",
-    "clientType": "Corporate Management & Multi-Branch Enterprise",
+    "demoUrl": "https://example.com/demo-preview/data-management",
+    "clientType": "OmniTech Multi-Branch Enterprise (Sample)",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-data-management-1",
-        "title": "Data Management & Analytics Engine — System Demo",
-        "description": "Interactive preview and operational architecture model for Data Management & Analytics Engine.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-enterprise-data-engine",
+        "title": "Enterprise Data Pipeline & Analytics Engine — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Enterprise Data Pipeline & Analytics Engine.",
+        "url": "https://example.com/demo-preview/data-management",
         "type": "Power BI Analytics",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
@@ -429,18 +419,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-payroll-analytics",
+    "demoUrl": "https://example.com/demo-preview/payroll-analytics",
     "clientType": "Corporate HR & Staff Management",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-payroll-analytics-1",
-        "title": "Payroll Analytics & Automation Platform — System Demo",
-        "description": "Interactive preview and operational architecture model for Payroll Analytics & Automation Platform.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-payroll-analytics",
+        "title": "Payroll Analytics & Automation Platform — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Payroll Analytics & Automation Platform.",
+        "url": "https://example.com/demo-preview/payroll-analytics",
         "type": "Google Sheets Model",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
@@ -496,18 +486,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-performance-dashboard",
+    "demoUrl": "https://example.com/demo-preview/performance-analytics",
     "clientType": "Operations & Workforce Management",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-performance-analytics-1",
-        "title": "Performance Analytics Dashboard — System Demo",
-        "description": "Interactive preview and operational architecture model for Performance Analytics Dashboard.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-performance-dashboard",
+        "title": "Performance Analytics Dashboard — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Performance Analytics Dashboard.",
+        "url": "https://example.com/demo-preview/performance-analytics",
         "type": "Power BI Analytics",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
@@ -563,18 +553,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-workforce-attendance",
+    "demoUrl": "https://example.com/demo-preview/workforce-attendance",
     "clientType": "HR Operations & Plant Management",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-workforce-attendance-1",
-        "title": "Workforce Attendance Analytics — System Demo",
-        "description": "Interactive preview and operational architecture model for Workforce Attendance Analytics.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-workforce-attendance",
+        "title": "Workforce Attendance Analytics — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Workforce Attendance Analytics.",
+        "url": "https://example.com/demo-preview/workforce-attendance",
         "type": "Google Sheets Model",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
@@ -630,18 +620,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-productivity-tracker",
+    "demoUrl": "https://example.com/demo-preview/operational-productivity",
     "clientType": "Cross-Functional Business Operations",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-operational-productivity-1",
-        "title": "Operational Productivity Tracker — System Demo",
-        "description": "Interactive preview and operational architecture model for Operational Productivity Tracker.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-productivity-tracker",
+        "title": "Operational Productivity Tracker — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Operational Productivity Tracker.",
+        "url": "https://example.com/demo-preview/operational-productivity",
         "type": "Google Sheets Model",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
@@ -697,18 +687,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-warehouse-picking",
+    "demoUrl": "https://example.com/demo-preview/warehouse-picking",
     "clientType": "E-Commerce & Warehouse Fulfillment",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-warehouse-picking-1",
-        "title": "Warehouse Picking Automation — System Demo",
-        "description": "Interactive preview and operational architecture model for Warehouse Picking Automation.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-warehouse-picking",
+        "title": "Warehouse Picking Automation — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Warehouse Picking Automation.",
+        "url": "https://example.com/demo-preview/warehouse-picking",
         "type": "Google Sheets Model",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
@@ -764,18 +754,18 @@
     ],
     "image": "",
     "images": [],
-    "demoUrl": "https://docs.google.com/spreadsheets/d/preview-content-workflow",
+    "demoUrl": "https://example.com/demo-preview/content-workflow",
     "clientType": "Digital Media & Creative Production Agency",
     "createdAt": "2026-10-01T00:00:00.000Z",
     "updatedAt": "2026-10-28T00:00:00.000Z",
     "demos": [
       {
         "id": "demo-content-workflow-1",
-        "title": "Content Workflow & Pipeline Analytics — System Demo",
-        "description": "Interactive preview and operational architecture model for Content Workflow & Pipeline Analytics.",
-        "url": "https://docs.google.com/spreadsheets/d/preview-content-workflow",
+        "title": "Content Workflow & Pipeline Analytics — Interactive System Demo",
+        "description": "Simulated interactive operational demo model showcasing automated calculations and architecture for Content Workflow & Pipeline Analytics.",
+        "url": "https://example.com/demo-preview/content-workflow",
         "type": "Google Sheets Model",
-        "screenshot": "",
+        "screenshot": "/projects/project-1.png",
         "order": 1,
         "status": "published"
       }
