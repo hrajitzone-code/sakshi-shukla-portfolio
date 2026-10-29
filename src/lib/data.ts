@@ -134,7 +134,7 @@ export const SKILLS: Skill[] = [
     isBrand: true,
     logo: 'excel.svg',
     description: 'Advanced Excel dashboards, KPI cards, complex formulas, and macro automation.',
-    projects: ['Coral BIOS Daily Report', 'Loan Application', 'Godown Management']
+    projects: ['Nova Systems Daily Operations Report', 'Loan Application', 'Godown Management']
   },
   {
     atomicNumber: 2,
@@ -144,7 +144,7 @@ export const SKILLS: Skill[] = [
     isBrand: true,
     logo: 'powerbi.svg',
     description: 'Interactive business intelligence reports, KPI visualizations, and data models.',
-    projects: ['Coral BIOS Daily Report', 'Performance Analytics']
+    projects: ['Nova Systems Daily Operations Report', 'Performance Analytics']
   },
   {
     atomicNumber: 3,
@@ -154,7 +154,7 @@ export const SKILLS: Skill[] = [
     isBrand: true,
     logo: 'sql.svg',
     description: 'Data querying, validation, cleaning, and structured transaction data architecture.',
-    projects: ['Coral BIOS FMS', 'Godown Management', 'Data Management']
+    projects: ['Apex Franchise Management System', 'Godown Management', 'Data Management']
   },
   {
     atomicNumber: 4,
@@ -164,7 +164,7 @@ export const SKILLS: Skill[] = [
     isBrand: true,
     logo: 'googlesheets.svg',
     description: 'Dynamic cloud reporting, multi-department sheets integration, and custom views.',
-    projects: ['Coral BIOS Daily Report', 'Payroll Analytics', 'Productivity Tracker']
+    projects: ['Nova Systems Daily Operations Report', 'Payroll Analytics', 'Productivity Tracker']
   },
   {
     atomicNumber: 5,
@@ -174,7 +174,7 @@ export const SKILLS: Skill[] = [
     isBrand: true,
     logo: 'googleappsscript.svg',
     description: 'Automated email distribution, PDF document generation, and workflow scripting.',
-    projects: ['Coral BIOS Daily Report', 'Payroll Analytics']
+    projects: ['Nova Systems Daily Operations Report', 'Payroll Analytics']
   },
   {
     atomicNumber: 6,
@@ -184,7 +184,7 @@ export const SKILLS: Skill[] = [
     isBrand: true,
     logo: 'python.svg',
     description: 'Data manipulation and analysis scripting (currently learning).',
-    projects: ['Coral BIOS Daily Report']
+    projects: ['Nova Systems Daily Operations Report']
   },
 
   // Data Analytics
@@ -206,7 +206,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-analysis',
     description: 'Converting raw operational data into structured insights and comparative analysis.',
-    projects: ['Coral BIOS Daily Report', 'Performance Analytics']
+    projects: ['Nova Systems Daily Operations Report', 'Performance Analytics']
   },
   {
     atomicNumber: 9,
@@ -216,7 +216,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-kpi',
     description: 'Tracking key performance indicators across department-wise and field operations.',
-    projects: ['Coral BIOS Daily Report', 'Loan Application']
+    projects: ['Nova Systems Daily Operations Report', 'Loan Application']
   },
   {
     atomicNumber: 10,
@@ -226,7 +226,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-trend',
     description: 'Evaluating Today vs Yesterday, weekly, and monthly performance trends.',
-    projects: ['Coral BIOS Daily Report', 'Workforce Attendance']
+    projects: ['Nova Systems Daily Operations Report', 'Workforce Attendance']
   },
   {
     atomicNumber: 11,
@@ -236,7 +236,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-compare',
     description: 'Departmental benchmarks, period-over-period comparison, and variance tracking.',
-    projects: ['Data Management', 'Coral BIOS Daily Report']
+    projects: ['Data Management', 'Nova Systems Daily Operations Report']
   },
   {
     atomicNumber: 12,
@@ -258,7 +258,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-req',
     description: 'Translating department operational needs into functional system specifications.',
-    projects: ['Coral BIOS FMS', 'Loan Application']
+    projects: ['Apex Franchise Management System', 'Loan Application']
   },
   {
     atomicNumber: 14,
@@ -268,7 +268,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-map',
     description: 'End-to-end lifecycle mapping: Application to Closure, Purchase to Dispatch.',
-    projects: ['Godown Management', 'Coral BIOS FMS', 'Loan Application']
+    projects: ['Godown Management', 'Apex Franchise Management System', 'Loan Application']
   },
   {
     atomicNumber: 15,
@@ -278,7 +278,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-workflow',
     description: 'Structuring sequential approvals, status tracking, and role-based permissions.',
-    projects: ['Coral BIOS FMS', 'Operational Productivity Tracker']
+    projects: ['Apex Franchise Management System', 'Operational Productivity Tracker']
   },
   {
     atomicNumber: 16,
@@ -300,7 +300,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-mis',
     description: 'Daily, weekly, monthly, and custom-period management reporting views.',
-    projects: ['Coral BIOS Daily Report', 'Data Management']
+    projects: ['Nova Systems Daily Operations Report', 'Data Management']
   },
   {
     atomicNumber: 18,
@@ -310,7 +310,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-dash',
     description: 'Building dynamic interactive dashboards with totals, averages, min/max, and raw values.',
-    projects: ['Coral BIOS Daily Report', 'Performance Analytics']
+    projects: ['Nova Systems Daily Operations Report', 'Performance Analytics']
   },
   {
     atomicNumber: 19,
@@ -320,7 +320,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-mgmt',
     description: 'Executive reporting, department comparisons, and summary scorecards.',
-    projects: ['Coral BIOS Daily Report', 'Coral BIOS FMS']
+    projects: ['Nova Systems Daily Operations Report', 'Apex Franchise Management System']
   },
 
   // Automation
@@ -332,7 +332,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-auto-excel',
     description: 'Automating repetitive spreadsheets, report generation, and data formulas.',
-    projects: ['Payroll Analytics', 'Coral BIOS Daily Report']
+    projects: ['Payroll Analytics', 'Nova Systems Daily Operations Report']
   },
   {
     atomicNumber: 21,
@@ -342,7 +342,7 @@ export const SKILLS: Skill[] = [
     isBrand: false,
     logo: 'concept-auto-sheets',
     description: 'Automating cloud sheets, Drive storage, and cross-department syncing.',
-    projects: ['Payroll Analytics', 'Coral BIOS Daily Report']
+    projects: ['Payroll Analytics', 'Nova Systems Daily Operations Report']
   },
   {
     atomicNumber: 22,

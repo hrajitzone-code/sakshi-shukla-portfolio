@@ -33,12 +33,13 @@ const jetbrainsMono = localFont({
   display: 'swap',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://example.com/demo');
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sakshi-shukla-portfolio-six.vercel.app'),
+  metadataBase: new URL(siteUrl),
   title: `${PROFILE.name} — ${PROFILE.shortRole}`,
   description: PROFILE.resumeSummary,
   keywords: [
-    'Sakshi Shukla',
     'Business Systems',
     'MIS Reporting',
     'Workflow Automation',
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${PROFILE.name} — ${PROFILE.shortRole}`,
     description: PROFILE.resumeSummary,
-    url: 'https://sakshi-shukla-portfolio-six.vercel.app',
+    url: siteUrl,
     siteName: `${PROFILE.name} Portfolio`,
     images: [
       {

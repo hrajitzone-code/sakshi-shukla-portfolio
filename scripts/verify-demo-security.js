@@ -25,13 +25,13 @@ if (unsafeLinks.length > 0) {
   console.log('[PASS] 2. System Demo links sanitized: All URLs point to safe mock preview endpoints.');
 }
 
-// 2. Audit src/lib/data.ts for personal PII
+// 2. Audit src/lib/data.ts for personal PII and client references
 const dataFile = fs.readFileSync(path.join(__dirname, '..', 'src', 'lib', 'data.ts'), 'utf8');
-if (dataFile.includes('sakshishukla1167@gmail.com') || dataFile.includes('8200619139') || dataFile.includes('AJIT ZONE PVT. LTD.')) {
-  console.error('[FAIL] src/lib/data.ts still contains real personal contact data or company names');
+if (dataFile.includes('sakshishukla1167@gmail.com') || dataFile.includes('8200619139') || dataFile.includes('AJIT ZONE PVT. LTD.') || dataFile.includes('Coral BIOS')) {
+  console.error('[FAIL] src/lib/data.ts still contains real personal contact data, company names, or client references');
   failed = true;
 } else {
-  console.log('[PASS] 3. src/lib/data.ts sanitized: Real email, phone, and company names replaced with fictional demo data.');
+  console.log('[PASS] 3. src/lib/data.ts sanitized: Real email, phone, company names, and client references replaced with fictional demo data.');
 }
 
 // 3. Audit src/lib/auth.ts for hardcoded secret fallbacks
@@ -70,13 +70,16 @@ if (!contactRoute.includes('RATE_LIMIT_WINDOW_MS') || !contactRoute.includes('sa
   console.log('[PASS] 7. Contact endpoint protected: IP rate limiting, input sanitization, and demo simulation mode.');
 }
 
-// 5. Audit noindex metadata
+// 5. Audit layout metadata for search engines and production domain isolation
 const layoutFile = fs.readFileSync(path.join(__dirname, '..', 'src', 'app', 'layout.tsx'), 'utf8');
 if (!layoutFile.includes('robots') || !layoutFile.includes('index: false')) {
   console.error('[FAIL] src/app/layout.tsx missing noindex metadata');
   failed = true;
+} else if (layoutFile.includes('sakshi-shukla-portfolio-six.vercel.app')) {
+  console.error('[FAIL] src/app/layout.tsx hardcodes live production domain');
+  failed = true;
 } else {
-  console.log('[PASS] 8. Search Engine Protection: noindex, nofollow, nocache metadata configured in RootLayout.');
+  console.log('[PASS] 8. Production URL Isolation & noindex: Zero hardcoded production domains, noindex/nofollow configured.');
 }
 
 // 6. Audit Admin Dashboard Demo Banner
